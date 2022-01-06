@@ -23,19 +23,19 @@ class DynamicCharts extends Component {
     this.setState({ currentUser: currentUser, userReady: true });
     console.log(currentUser.prenom);
 
-    // axios
-    //   .get(`http://localhost:8080/api/posts/${currentUser.prenom}/mobilite`)
+     axios
+       .get(`http://localhost:8080/api/posts/${currentUser.prenom}/mobilite`)
       
-    //   .then((res) => {
-    //     const mois = res.data;
-    //     console.log(mois);
-    //     // const mois = JSON.stringify(preMois);
-    //     // mois.toString();
-    //     const valeur = res.data;
-    //     this.setState({ mois, valeur });
-    //     console.log(mois.mois);
-    //     return JSON.stringify(mois);
-    //   });
+       .then((res) => {
+         const mois = res.data;
+         console.log(mois);
+         // const mois = JSON.stringify(preMois);
+         // mois.toString();
+         const valeur = res.data;
+         this.setState({ mois, valeur });
+         console.log(mois.mois);
+         return JSON.stringify(mois);
+       });
 
     PostDataService.getAll(data)
       .then(response => {
