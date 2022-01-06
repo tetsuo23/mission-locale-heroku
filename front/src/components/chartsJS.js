@@ -2,7 +2,8 @@ import axios from "axios";
 import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
 import AuthService from "../services/auth.service";
-import PostDataService from '../services/post.service'
+import PostDataService from '../services/post.service';
+import authHeader from './../services/auth-header';
 
 class DynamicCharts extends Component {
   state = {
@@ -24,7 +25,7 @@ class DynamicCharts extends Component {
     console.log(currentUser.prenom);
 
      axios
-       .get(`http://localhost:8080/api/posts/${currentUser.prenom}/mobilite`)
+       .get(`http://localhost:8080/api/posts/${currentUser.prenom}/mobilite`, { headers: authHeader() } )
       
        .then((res) => {
          const mois = res.data;
