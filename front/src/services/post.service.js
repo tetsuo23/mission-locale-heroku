@@ -1,5 +1,5 @@
 import http from "../common/http-common";
-import axios from './../../../app/front/react-jwt-auth/src/common/http-common';
+import axios from 'axios';
 
 
 class PostDataService {
