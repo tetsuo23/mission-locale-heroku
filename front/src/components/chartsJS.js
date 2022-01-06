@@ -37,7 +37,7 @@ class DynamicCharts extends Component {
          return JSON.stringify(mois);
        });
 
-    PostDataService.getAll(data)
+    PostDataService.getAll()
       .then(response => {
         this.setState({
           userId: response.data.userId,
