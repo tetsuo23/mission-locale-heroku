@@ -33,15 +33,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // ------------------------------------------------------------------------
 
 // database
-const db = require("./app/models");
+const db = require("./models");
 const Role = db.role;
 const User = db.user;
 const Cate = db.categorie;
 const Fin = db.finance;
 const Mob = db.mobilite;
-const DonneeController = require("./app/controllers/donnee.controller");
-const UserController = require("./app/controllers/user.controller");
-const AuthController = require("./app/controllers/auth.controller");
+const DonneeController = require("./controllers/donnee.controller");
+const UserController = require("./controllers/user.controller");
+const AuthController = require("./controllers/auth.controller");
 
 
 //  db.sequelize.sync();
@@ -64,8 +64,8 @@ app.get('/api/:prenom', (req,res) => {
 })
 
 // routes
-require('./app/routes/auth.routes')(app);
-require('./app/routes/user.routes')(app);
+require('./routes/auth.routes')(app);
+require('./routes/user.routes')(app);
 // require("./app/routes/donnees.routes")(app);
 require("./app/routes/donnee.routes")(app);
 
