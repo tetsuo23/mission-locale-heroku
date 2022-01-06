@@ -9,6 +9,7 @@ class DynamicCharts extends Component {
   state = {
     userId: "",
     mois: [],
+    post:[],
     valeur: [],
     currentUser: {
       prenom: "",
@@ -41,8 +42,8 @@ class DynamicCharts extends Component {
      PostDataService.getAll()
        .then((res) => {
          const post = res.data;
-         this.setState({ mois});
-         console.log(mois);
+         this.setState({ post});
+         console.log(post);
        })
        .catch(e => {
          console.log(e);
