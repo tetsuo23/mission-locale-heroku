@@ -10,6 +10,6 @@ module.exports = function (app) {
     next();
   });
 
-  app.get("/",[authJwt.verifyToken], posts.findAll);
+  app.get("/",[authJwt.verifyToken], controller.findAll);
 
 };
