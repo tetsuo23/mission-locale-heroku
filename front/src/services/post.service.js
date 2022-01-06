@@ -1,6 +1,7 @@
 import http from "../common/http-common";
 import axios from 'axios';
 
+const API_URL = "https://mission-locale-heroku.herokuapp.com/api/";
 
 class PostDataService {
   // getAll() {
