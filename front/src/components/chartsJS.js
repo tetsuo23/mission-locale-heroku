@@ -22,7 +22,7 @@ class DynamicCharts extends Component {
     const currentUser = AuthService.getCurrentUser();
     this.setState({ currentUser: currentUser, userReady: true });
     console.log(currentUser.prenom);
-const Post = PostDataService.get();
+const Post = PostDataService.getAll();
 console.log(Post)
     // axios
     //   .get(`http://localhost:8080/api/posts/${currentUser.prenom}/mobilite`)
