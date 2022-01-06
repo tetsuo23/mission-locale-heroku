@@ -65,7 +65,8 @@ export default class Login extends Component {
     this.form.validateAll();
 
     if (this.checkBtn.context._errors.length === 0) {
-      AuthService.login(this.state.nom, this.state.prenom, this.state.password, this.state.telephone, this.state.datedenaissance, this.state.adresse).then(
+      AuthService.login(this.state.nom, this.state.prenom, this.state.password, this.state.telephone, this.state.datedenaissance, this.state.adresse)
+      .then(
         () => {
           this.props.history.push(`/${this.state.prenom}/profile`);
           window.location.reload();

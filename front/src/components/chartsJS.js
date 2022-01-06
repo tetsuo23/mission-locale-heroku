@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
 import AuthService from "../services/auth.service";
+import PostDataService from '../services/post.service'
 
 class DynamicCharts extends Component {
   state = {
@@ -21,20 +22,21 @@ class DynamicCharts extends Component {
     const currentUser = AuthService.getCurrentUser();
     this.setState({ currentUser: currentUser, userReady: true });
     console.log(currentUser.prenom);
-
-    axios
-      .get(`http://localhost:8080/api/posts/${currentUser.prenom}/mobilite`)
+const Post = PostDataService.get();
+console.log(Post)
+    // axios
+    //   .get(`http://localhost:8080/api/posts/${currentUser.prenom}/mobilite`)
       
-      .then((res) => {
-        const mois = res.data;
-        console.log(mois);
-        // const mois = JSON.stringify(preMois);
-        // mois.toString();
-        const valeur = res.data;
-        this.setState({ mois, valeur });
-        console.log(mois.mois);
-        return JSON.stringify(mois);
-      });
+    //   .then((res) => {
+    //     const mois = res.data;
+    //     console.log(mois);
+    //     // const mois = JSON.stringify(preMois);
+    //     // mois.toString();
+    //     const valeur = res.data;
+    //     this.setState({ mois, valeur });
+    //     console.log(mois.mois);
+    //     return JSON.stringify(mois);
+    //   });
   }
 
   render() {
