@@ -6,8 +6,8 @@ class PostDataService {
     return http.get("/posts");
   }
 
-  get(userId) {
-    return http.get(`/posts/${userId}`);
+  get(userId, data) {
+    return http.get(`/posts/${userId}`, data);
   }
 
   create(data) {
