@@ -68,6 +68,7 @@ require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
 // require("./app/routes/donnees.routes")(app);
 require("./routes/donnee.routes")(app);
+require("./routes/post.routes")(app);
 
 
 // set port, listen for requests
