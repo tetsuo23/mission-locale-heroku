@@ -24,7 +24,7 @@ class DynamicCharts extends Component {
     console.log(currentUser.prenom);
 
      axios
-       .get(`http://localhost:8080/api/posts/${currentUser.prenom}/mobilite`)
+       .get(`https://mission-locale-heroku.herokuapp.com/api/posts/${currentUser.prenom}/mobilite`)
       
        .then((res) => {
          const mois = res.data;
