@@ -45,7 +45,7 @@ db.sequelize.sync().then(() => {
 // run();
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+  res.json({ message: "Welcome to your application." });
 });
 
 app.get('/api/:prenom', (req,res) => {
