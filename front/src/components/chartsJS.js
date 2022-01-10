@@ -46,6 +46,7 @@ class DynamicCharts extends Component {
          console.log(post);
        })
        .catch(e => {
+         
          console.log(e);
        })
   }
