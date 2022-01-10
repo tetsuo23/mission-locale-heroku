@@ -16,7 +16,7 @@ class chartsLogement extends Component {
         const currentUser = AuthService.getCurrentUser();
         this.setState({ currentUser: currentUser, userReady: true, id: currentUser.id });
 
-        axios.get('http://localhost:8080/api/donnees/categories/2')
+        axios.get('https://mission-locale-heroku.herokuapp.com/api/donnees/categories/2')
             .then(res => {
                 const data = res.data;
                 console.log(data)

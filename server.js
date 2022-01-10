@@ -19,16 +19,6 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// ------------------------------------------------------------------------
-
-
- // Have Node serve the files for our built React app
- app.use(express.static(path.resolve(__dirname, './front/build')));
-
- // All other GET requests not handled before will return our React app
- app.get('*', (req, res) => {
-   res.sendFile(path.resolve(__dirname, './front/build', 'index.html'));
- });
 
 // ------------------------------------------------------------------------
 
@@ -76,6 +66,18 @@ const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
+
+// ------------------------------------------------------------------------
+
+
+ // Have Node serve the files for our built React app
+ app.use(express.static(path.resolve(__dirname, './front/build')));
+
+ // All other GET requests not handled before will return our React app
+ app.get('*', (req, res) => {
+   res.sendFile(path.resolve(__dirname, './front/build', 'index.html'));
+ });
+
 
 function initial() {
   Role.create({
