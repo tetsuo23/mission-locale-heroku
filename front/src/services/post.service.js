@@ -1,5 +1,5 @@
 import http from "../common/http-common";
-import axios from 'axios';
+import axios from "axios";
 
 const API_URL = "https://mission-locale-heroku.herokuapp.com/api/";
 
@@ -33,21 +33,24 @@ class PostDataService {
   // }
   // getCurrentUser() {
   //   return JSON.parse(localStorage.getItem('user'));
-    
+
   // }
 
-getAll(mois) {
-  return axios
-  .get(API_URL + 'posts', {
-mois
-  })
-  .then(response => {
-    if (response.data.accessToken) {
-      return response.data
-    }
-  })
-}
+  getAll(mois) {
+    return axios
+      .get(API_URL + "posts", {
+        mois,
+      })
+      .then((response) => {
+        if (response.data.accessToken) {
+          return response.data;
+        }
+      });
+  }
 
+  create(data) {
+    return axios.post(API_URL + "posts", data);
+  }
 }
 
 export default new PostDataService();
