@@ -126,8 +126,8 @@ class Mobilite extends Component {
     const { currentUser } = this.state;
     let date = new Date();
     let date2 = date.getMonth(); // 2020-06-21
-    let mois = [
-      "Janvier",
+    let mois = new Array
+      ("Janvier",
       "Février",
       "Mars",
       "Avril",
@@ -138,8 +138,8 @@ class Mobilite extends Component {
       "Septembre",
       "Octobre",
       "Novembre",
-      "Décembre",
-    ];
+      "Décembre")
+    ;
     let longMonth = date.toLocaleString("fr-fr", { month: "long" });
     let beforeMonth = mois[date2];
     return (
