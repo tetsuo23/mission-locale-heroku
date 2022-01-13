@@ -101,7 +101,7 @@ class NavBeneficiaire extends Component {
                   />
                 </Link>
                 <Link
-                  to={`/${this.state.currentUser.prenom}/logement`}
+                  to={`/${this.state.currentUser.prenom}/emploi`}
                   className="d-flex justify-content-between align-items-center"
                 >
                   Emploi/formation{" "}
@@ -112,7 +112,7 @@ class NavBeneficiaire extends Component {
                   />
                 </Link>
                 <Link
-                  to={`/${this.state.currentUser.prenom}/logement`}
+                  to={`/${this.state.currentUser.prenom}/finance`}
                   className="d-flex justify-content-between align-items-center"
                 >
                   Finance{" "}
@@ -123,7 +123,7 @@ class NavBeneficiaire extends Component {
                   />
                 </Link>
                 <Link
-                  to={`/${this.state.currentUser.prenom}/logement`}
+                  to={`/${this.state.currentUser.prenom}/citoyenneté`}
                   className="d-flex justify-content-between align-items-center"
                 >
                   Citoyenneté{" "}
@@ -134,7 +134,7 @@ class NavBeneficiaire extends Component {
                   />
                 </Link>
                 <Link
-                  to={`/${this.state.currentUser.prenom}/logement`}
+                  to={`/${this.state.currentUser.prenom}/santé`}
                   className="d-flex justify-content-between align-items-center"
                 >
                   Santé{" "}

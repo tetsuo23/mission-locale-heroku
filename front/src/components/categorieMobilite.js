@@ -125,7 +125,7 @@ class Mobilite extends Component {
   render() {
     const { currentUser } = this.state;
     let date = new Date();
-    let date2 = (date.getMonth()-1); // 2020-06-21
+    let date2 = new Date(date.getMonth()-1); // 2020-06-21
     let mois = new Array
       ("Janvier",
       "Février",
