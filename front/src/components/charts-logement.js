@@ -75,12 +75,6 @@ class chartsLogement extends Component {
         };
         return (
             <div>
-                {currentUser.id}
-                <ul>
-                    {/* {this.state.mois.map(tutorial => <li>{tutorial.mois}  {tutorial.valeur}</li>)}  */}
-
-
-                </ul>
                 <h3>Bar Chart</h3>
                 <div>
                     <Line
