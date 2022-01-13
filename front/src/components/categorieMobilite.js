@@ -199,7 +199,7 @@ class Mobilite extends Component {
                         <span>
                           <h3>
                             Actualisation pour la période de : <br />{" "}
-                            <strong>{date2}</strong>
+                            <strong>{beforeMonth}</strong>
                           </h3>
                         </span>
                         <span>Selectionnez le mois actuel : &nbsp;</span>
@@ -223,10 +223,10 @@ class Mobilite extends Component {
                         <span>Selectionnez le mois précédent : &nbsp;</span>
                         <button
                           onClick={this.handleChangeMonth}
-                          value={date2}
+                          value={beforeMonth}
                           className="btn btn-success"
                         >
-                          {date2}
+                          {beforeMonth}
                         </button>
                       </div>
                     )}
