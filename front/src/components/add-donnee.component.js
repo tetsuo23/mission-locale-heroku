@@ -66,7 +66,8 @@ export default class AddDonnee extends Component {
       mois: this.state.mois,
       valeur: this.state.valeur,
       userId: user.prenom,
-      categorie: this.state.categorie
+      categorie: this.state.categorie,
+      submitted: true
     };
 
     PostDataService.create(data)
