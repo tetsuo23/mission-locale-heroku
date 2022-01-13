@@ -4,7 +4,6 @@ import { Line } from 'react-chartjs-2';
 import AuthService from "../services/auth.service";
 import authHeader from './../services/auth-header';
 import PostDataService from '../services/post.service';
-import authHeader from './../services/auth-header';
 
 
 
