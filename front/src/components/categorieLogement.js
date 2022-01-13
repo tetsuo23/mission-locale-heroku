@@ -6,6 +6,8 @@ import AuthService from "../services/auth.service";
 import UserService from "../services/user.service";
 import EventBus from "../common/EventBus";
 import AddDonnee from "./add-donnee.component";
+import PostDataService from "../services/post.service";
+
 
 class Logement extends Component {
   constructor(props) {
@@ -111,6 +113,26 @@ class Logement extends Component {
 
   render() {
     const { currentUser } = this.state;
+
+    const { currentUser } = this.state;
+    let date = new Date();
+    let date2 = (date.getMonth()-1); // 2020-06-21
+    let mois = new Array
+      ("Janvier",
+      "Février",
+      "Mars",
+      "Avril",
+      "Mai",
+      "Juin",
+      "Juillet",
+      "Août",
+      "Septembre",
+      "Octobre",
+      "Novembre",
+      "Décembre")
+    ;
+    let longMonth = date.toLocaleString("fr-fr", { month: "long" });
+    let beforeMonth = mois[date2];
 
     return (
         <div>
