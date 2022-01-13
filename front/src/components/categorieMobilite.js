@@ -1,16 +1,12 @@
 import React, { Component } from "react";
 import NavBeneficiaire from "./NavBeneficiaire";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import DynamicCharts from "./chartsJS";
 import PostDataService from "../services/post.service";
-
 import AuthService from "../services/auth.service";
 import UserService from "../services/user.service";
 import EventBus from "../common/EventBus";
 
-import AddDonnee from "./add-donnee.component";
 
 class Mobilite extends Component {
   constructor(props) {
@@ -18,7 +14,6 @@ class Mobilite extends Component {
 
     this.onChangemois = this.onChangemois.bind(this);
     this.onChangevaleur = this.onChangevaleur.bind(this);
-
     this.saveDonnee = this.saveDonnee.bind(this);
     this.newDonnee = this.newDonnee.bind(this);
 

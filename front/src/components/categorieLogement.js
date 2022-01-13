@@ -5,13 +5,18 @@ import ChartsLogement from "./charts-logement";
 import AuthService from "../services/auth.service";
 import UserService from "../services/user.service";
 import EventBus from "../common/EventBus";
-import AddDonnee from "./add-donnee.component";
 import PostDataService from "../services/post.service";
 
 
 class Logement extends Component {
   constructor(props) {
     super(props);
+
+    this.onChangemois = this.onChangemois.bind(this);
+    this.onChangevaleur = this.onChangevaleur.bind(this);
+    this.saveDonnee = this.saveDonnee.bind(this);
+    this.newDonnee = this.newDonnee.bind(this);
+
     this.state = {
       id: null,
       mois: "",
@@ -130,8 +135,7 @@ class Logement extends Component {
       "Décembre")
     ;
     let longMonth = date.toLocaleString("fr-fr", { month: "long" });
-    let beforeMonth = mois[date2];
-
+let beforeMonth = date2.toLocaleString("fr-fr", { month: "long" });
     return (
         <div>
           <div className="row">
