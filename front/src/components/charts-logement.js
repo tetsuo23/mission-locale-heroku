@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { Component } from 'react'
 import { Line } from 'react-chartjs-2';
 import AuthService from "../services/auth.service";
+import authHeader from './../services/auth-header';
+
 
 
 
@@ -16,7 +18,7 @@ class chartsLogement extends Component {
         const currentUser = AuthService.getCurrentUser();
         this.setState({ currentUser: currentUser, userReady: true, id: currentUser.id });
 
-        axios.get('https://mission-locale-heroku.herokuapp.com/api/donnees/categories/2')
+        axios.get(`https://mission-locale-heroku.herokuapp.com/api/posts/${currentUser.prenom}/logement`, { headers: authHeader() })
             .then(res => {
                 const data = res.data;
                 console.log(data)
