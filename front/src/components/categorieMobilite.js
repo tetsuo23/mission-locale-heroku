@@ -141,7 +141,7 @@ class Mobilite extends Component {
       "Décembre",
     ];
     let longMonth = date.toLocaleString("fr-fr", { month: "long" });
-    let beforeMonth = date2.toLocaleString("fr-fr", { month: "long" });
+    let beforeMonth = mois[date2];
     return (
       <div>
         <div className="row">
