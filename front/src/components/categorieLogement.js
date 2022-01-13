@@ -113,8 +113,6 @@ class Logement extends Component {
 
   render() {
     const { currentUser } = this.state;
-
-    const { currentUser } = this.state;
     let date = new Date();
     let date2 = (date.getMonth()-1); // 2020-06-21
     let mois = new Array
