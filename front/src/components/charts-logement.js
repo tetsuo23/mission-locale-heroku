@@ -9,76 +9,69 @@ import authHeader from './../services/auth-header';
 
 class chartsLogement extends Component {
     state = {
+        userId: "",
         mois: [],
+        post:[],
         valeur: [],
-        data: [],
-        currentUser: { prenom: "", nom: "", id: "" }
-    };
+        currentUser: {
+          prenom: "",
+          nom: "",
+          id: "",
+          mois: "",
+          valeur: "",
+          userId: "",
+        },
+      };
     componentDidMount() {
         const currentUser = AuthService.getCurrentUser();
-        this.setState({ currentUser: currentUser, userReady: true, id: currentUser.id });
+    this.setState({ currentUser: currentUser, userReady: true });
+    console.log(currentUser.prenom);
 
-        axios.get(`https://mission-locale-heroku.herokuapp.com/api/posts/${currentUser.prenom}/logement`, { headers: authHeader() })
-            .then(res => {
-                const data = res.data;
-                console.log(data)
-                // const mois = JSON.stringify(preMois);
-                // mois.toString();
-                // const valeur = res.data;
-                this.setState({ data });
-                console.log(data)
-                //  console.log(valeur)
-                return JSON.stringify(data);
+     axios
+       .get(`https://mission-locale-heroku.herokuapp.com/api/posts/${currentUser.prenom}/logement`, { headers: authHeader() } )
+      
+       .then((res) => {
+         const mois = res.data;
+         console.log(mois);
+         // const mois = JSON.stringify(preMois);
+         // mois.toString();
+         const valeur = res.data;
+         this.setState({ mois, valeur });
+         console.log(mois.mois);
+         return JSON.stringify(mois);
+       });
 
-            });
-        // .then(function (response) {
-        //     console.log(response);
-        //     const data=response.data[3]
-        //     return JSON.stringify(data[3]);
-
-        //   })
-        
-
+     PostDataService.getAll()
+       .then((res) => {
+         const post = res.data;
+         this.setState({ post});
+         console.log(post);
+       })
+       .catch(e => {
+         
+         console.log(e);
+       })
     }
 
 
 
 
     render() {
+        const { mois } = this.state;
 
-        const { currentUser, data } = this.state;
-const Mois = data.map((mois) => {
-            if (
-                mois.userId === currentUser.id
-            ) {
-                console.log(mois.mois)
-                return JSON.stringify(mois.mois);
-            }
-        });
-        const mooois = Mois
-        const Valeur = data.map((valeur) => {
-            if (
-                valeur.userId === currentUser.id
-            ) {
-                return (
-                    valeur.valeur
-                )
-            }
-        })
         const chartData = {
-
-            labels: mooois,
-            datasets: [
-                {
-                    label: '# of Votes',
-                    data: Valeur,
-                    fill: true,
-                    backgroundColor: 'rgb(255, 99, 132)',
-                    borderColor: 'rgba(255, 99, 132, 0.2)',
-                },
-            ],
+          labels: mois.map((mois) => mois.mois),
+    
+          datasets: [
+            {
+              label: "# of Votes",
+              data: mois.map((valeur) => valeur.valeur),
+              fill: false,
+              backgroundColor: "rgb(255, 99, 132)",
+              borderColor: "rgba(255, 99, 132, 0.2)",
+            },
+          ],
         };
-
         return (
             <div>
                 {currentUser.id}
