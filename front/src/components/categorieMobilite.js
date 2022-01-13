@@ -126,7 +126,6 @@ class Mobilite extends Component {
     const { currentUser } = this.state;
     let date = new Date();
     let date2 = new Date().getMonth() - 1; // 2020-06-21
-    console.log(date2);
     let mois = [
       "Janvier",
       "Février",
@@ -142,7 +141,7 @@ class Mobilite extends Component {
       "Décembre",
     ];
     let longMonth = date.toLocaleString("fr-fr", { month: "long" });
-    let beforeMonth = mois[date2];
+    let beforeMonth = date2.toLocaleString("fr-fr", { month: "long" });
     return (
       <div>
         <div className="row">
@@ -224,7 +223,7 @@ class Mobilite extends Component {
                         <span>Selectionnez le mois précédent : &nbsp;</span>
                         <button
                           onClick={this.handleChangeMonth}
-                          value={date2}
+                          value={beforeMonth}
                           className="btn btn-success"
                         >
                           {beforeMonth}
