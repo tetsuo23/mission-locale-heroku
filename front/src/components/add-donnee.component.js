@@ -77,8 +77,7 @@ export default class AddDonnee extends Component {
           mois: response.data.mois,
           valeur: response.data.valeur,
           published: response.data.published,
-          categorie: response.data.categorieId,
-          submitted: true
+          categorie: response.data.categorieId
         });
         console.log(response.data);
       })
