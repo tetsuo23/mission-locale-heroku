@@ -82,7 +82,9 @@ class App extends Component {
 
     return (
       <div style={{ marginTop: '7vh' }}>
-        <Navbar className="bleu d-flex justify-content-start" expand="lg" fixed='top'>
+        {showReferentBoard ?
+        (
+          <Navbar className="vert d-flex justify-content-start" expand="lg" fixed='top'>
           <div className="col-1 col-lg-1 col-xl-1 d-flex justify-content-start d-none d-md-block " >
             <img fluid="true" src={logo} alt="logo missions locales" style={{ width: "6vw", minWidth: "70px" }} className='' />
           </div>
@@ -168,6 +170,95 @@ class App extends Component {
 
 
         </Navbar>
+        ) : (
+          <Navbar className="bleu d-flex justify-content-start" expand="lg" fixed='top'>
+          <div className="col-1 col-lg-1 col-xl-1 d-flex justify-content-start d-none d-md-block " >
+            <img fluid="true" src={logo} alt="logo missions locales" style={{ width: "6vw", minWidth: "70px" }} className='' />
+          </div>
+
+
+
+          <div className="col-8 col-sm-8 col-md-10 col-lg-6 col-xl-7 d-flex justify-content-md-center justify-content-xs-center">
+            <h2>Plateforme garantie jeune</h2>
+          </div>
+
+          <div className='col-1 col-md-1 col-lg-5 col-xl-4 justify-content-end'>
+
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" className='' />
+            <Navbar.Collapse id="responsive-navbar-nav" className='justify-content-end'>
+              <Nav className="me-auto">
+                <ul className="navbar-nav mr-auto">
+
+                  {currentUser ? (
+                    <div className="navbar-nav ml-auto d-flex ">
+                      {showBeneficiaireBoard && (
+                        <button className="button" style={{minWidth:'10vw'}}>
+                          <Link to={`/${this.state.currentUser.prenom}/beneficiaire`} className="button">
+                            Tableau de bord
+                          </Link>
+                        </button>
+                      )}
+                      {showReferentBoard && (
+                        <button className="button" style={{minWidth:'10vw', maxWidth:'20vw'}}>
+                          <Link to={"/mod"} className="button">
+                            Tableau de bord
+                          </Link>
+                        </button>
+                      )}
+
+                      {showAdminBoard && (
+                        <button className="button" style={{minWidth:'10vw'}}>
+                          <Link to={"/admin"} className="button">
+                            Tableau de bord
+                          </Link>
+                        </button>
+                      )}
+                      <button className="button">
+                        <Link to={"/"}>
+                          Accueil
+                        </Link>
+                      </button>
+                      <button className="button">
+                        <Link to={`/${this.state.currentUser.prenom}/profile`}>
+                          
+                          Profil
+                        </Link>
+                      </button>
+                      <button className="button">
+                        <a href="/login"  onClick={this.logOut}>
+                          Deconnexion
+                        </a>
+                      </button>
+                    </div>
+                  ) :
+
+                    (
+                      <div className="navbar-nav ml-auto">
+                        <button className="button">
+                          <Link to={"/login"} className="button">
+                            Connexion
+                          </Link>
+                        </button>
+
+                        <button className="button">
+                          <Link to={"/register"} className="button">
+                            Inscription
+                          </Link>
+                        </button>
+                      </div>
+                    )}
+                </ul>
+
+              </Nav>
+
+            </Navbar.Collapse>
+
+          </div>
+
+
+        </Navbar>
+        )
+      }
 
         <div className="">
           <Switch>
