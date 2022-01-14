@@ -13,9 +13,6 @@ import { Link } from 'react-router-dom'
 class BoardBeneficiaire extends Component {
     constructor(props) {
         super(props);
-
-        // this.newCategorie = this.newCategorie.bind(this);
-
         this.state = {
             content: "",
             currentUser: { prenom:"",nom: ""  },
