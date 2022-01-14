@@ -62,6 +62,10 @@ class Emploi extends Component {
     });
   }
 
+  componentDidUpdate() {
+    this.newDonnee()
+  }
+
   onChangemois(e) {
     this.setState({
       moisUser: e.target.value,
