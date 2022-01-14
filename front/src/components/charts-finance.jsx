@@ -5,7 +5,7 @@ import AuthService from "../services/auth.service";
 import PostDataService from '../services/post.service';
 import authHeader from './../services/auth-header';
 
-class DynamicCharts extends Component {
+class ChartsFinance extends Component {
   state = {
     userId: "",
     mois: [],
