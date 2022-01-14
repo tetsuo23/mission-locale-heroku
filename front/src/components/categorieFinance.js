@@ -1,292 +1,265 @@
-import React, { Component } from 'react'
-import NavBeneficiaire from './NavBeneficiaire'
-
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import DynamicCharts from './chartsJS'
-
-
+import React, { Component } from "react";
+import NavBeneficiaire from "./NavBeneficiaire";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ChartsFinance from "./charts-finance";
+import PostDataService from "../services/post.service";
 import AuthService from "../services/auth.service";
 import UserService from "../services/user.service";
 import EventBus from "../common/EventBus";
 
 
-import AddDonnee from './add-donnee.component';
-
-
-
-
-
-
 class Finance extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            id: null,
-            mois: "",
-            categorie: 'Finance',
-            moisUser:'',
-            valeur: "",
-            currentUser: { prenom: "", nom: "" },
-            submitted: false
-        };
-    }
+    this.onChangemois = this.onChangemois.bind(this);
+    this.onChangevaleur = this.onChangevaleur.bind(this);
+    this.saveDonnee = this.saveDonnee.bind(this);
+    this.newDonnee = this.newDonnee.bind(this);
 
-    componentDidMount() {
-        const currentUser = AuthService.getCurrentUser();
-        this.setState({ currentUser: currentUser })
-        UserService.getUserBoard().then(
-            response => {
-                this.setState({
-                    content: response.data
-                });
-            },
-            error => {
-                this.setState({
-                    content:
-                        (error.response &&
-                            error.response.data &&
-                            error.response.data.message) ||
-                        error.message ||
-                        error.toString()
-                });
+    this.state = {
+      id: null,
+      mois: "",
+      categorie: "Finance",
+      moisUser: "",
+      valeur: "1",
+      currentUser: { prenom: "", nom: "" },
+      submitted: false,
+    };
+  }
 
-                if (error.response && error.response.status === 401) {
-                    EventBus.dispatch("logout");
-                }
-            }
-        );
-    }
-
-    onChangeMois(e) {
+  componentDidMount() {
+    const currentUser = AuthService.getCurrentUser();
+    this.setState({ currentUser: currentUser });
+    UserService.getUserBoard().then(
+      (response) => {
         this.setState({
-            moisUser: e.target.value
+          content: response.data,
         });
-    }
-    
+      },
+      (error) => {
+        this.setState({
+          content:
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString(),
+        });
 
-    render() {
+        if (error.response && error.response.status === 401) {
+          EventBus.dispatch("logout");
+        }
+      }
+    );
+    let date = new Date();
+    let longMonth = date.toLocaleString("fr-fr", { month: "long" });
+    if (!currentUser) this.setState({ redirect: "/home" });
+    this.setState({
+      currentUser: currentUser,
+      userReady: true,
+      mois: longMonth,
+    });
+  }
 
-        const { currentUser } = this.state;
+  onChangemois(e) {
+    this.setState({
+      moisUser: e.target.value,
+    });
+  }
 
-        
+  onChangevaleur(e) {
+    this.setState({
+      valeur: e.target.value,
+    });
+  }
 
-        return (
-            <div>
-                <div className='row'>
-                    <div className=" col-1">
-                        <NavBeneficiaire />
-                    </div>
-                    <div className="container-fluid col-11" style={{ padding: '0 2% 0 2%' }}>
-                        <div className="col-6" style={{ borderBottom: '2px solid black', marginTop: '2%', display: 'flex', justifyContent: 'space-between' }}>
-                            <h2>Catégorie  {this.state.categorie} de {currentUser.nom} {currentUser.prenom} </h2>
-                            <div className="d-flex  d-none d-md-block">
-                                <FontAwesomeIcon
-                                    icon="wrench"
-                                    id='icones'
-                                />
-                            </div>
-                        </div>
-                        <div className="row d-flex justify-content-between">
-                        <div className="col-6">
-                                <div>
+  handleChangeMonth = (e) => {
+    const isShow = !this.state.isShow;
+    // const mois = this.state.mois
+    this.setState({ isShow, mois: e.target.value });
+  };
+  saveDonnee() {
+    const user = { ...this.state.currentUser };
+    var data = {
+      mois: this.state.mois,
+      valeur: this.state.valeur,
+      userId: user.prenom,
+      categorie: this.state.categorie,
+    };
 
-                                    
-                                </div>
-                            </div>
-                            <div className="col-12 col-sm-6 col-lg-8 ">
-                                
-                                <div style={{ border: '1px solid black', backgroundColor: 'white', margin: '2% 0 2% 0' }}>
-                                    <DynamicCharts />
-                                </div>
-                                {/* <Line
-                                        data={chartData}
-                                        options={{
-                                            responsive: true,
-                                            Mois: { text: "THICCNESS SCALE", display: false, textAlign: 'end' },
+    PostDataService.create(data)
+      .then((response) => {
+        this.setState({
+          userId: response.data.userId,
+          mois: response.data.mois,
+          valeur: response.data.valeur,
+          published: response.data.published,
+          categorie: response.data.categorieId,
+          submitted: true,
+        });
+        console.log(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
 
-                                            scales: {
-                                                yAxes: [{
-                                                    ticks: {
-                                                        beginAtZero: true
-                                                    }
-                                                }
-                                                ]
-                                            }
-                                        }}
-                                    />  */}
+  newDonnee() {
+    this.setState({
+      id: null,
+      mois: "",
+      categorie: "Finance",
+      moisUser: "",
+      valeur: "",
+      currentUser: { prenom: "", nom: "" },
+      submitted: false,
+    });
+  }
 
-                            </div>
-                            {/* <div className=" col-4" style={{ padding: '0 2% 0 2%' }}>
-
-                                    <div className="col-12 d-flex justify-content-center" style={{ padding: '2% 0 5% 0' }}>
-                                        <strong>Question n°21</strong>
-                                    </div>
-
-                                    <div className="row">
-                                        <div className="col-3">
-                                            <p>01/09</p>
-                                        </div>
-                                        <div className="col-9 d-flex justify-content-end">
-                                             <input type="number" onChange={this.handleChange} value={this.state.chartData.datasets.data} /> 
-                                        </div>
-
-                                        <div className="col-3">
-                                            <p>07/09</p>
-                                        </div>
-                                        <div className="col-9 d-flex justify-content-end">
-                                            <input type="number" onChange={this.handleChange2} value={this.data} />
-                                        </div>
-
-                                        <div className="col-3">
-                                            <p>15/09</p>
-                                        </div>
-                                        <div className="col-9 d-flex justify-content-end">
-                                            <input type="number" onChange={this.handleChange3} value={this.data} />
-                                        </div>
-
-                                        <div className="col-3">
-                                            <p>22/09</p>
-                                        </div>
-                                        <div className="col-9 d-flex justify-content-end">
-                                            <input type="number" onChange={this.handleChange4} value={this.data} />
-                                        </div>
-
-
-                                        <div className="col-3">
-                                            <p>31/09</p>
-                                        </div>
-                                        <div className="col-9 d-flex justify-content-end">
-                                            <input type="number" onChange={this.handleChange5} value={this.data} />
-                                        </div>
-
-                                    </div>
-                                    <div className="col-12 d-flex justify-content-center" style={{ padding: '2% 0 5% 0' }}>
-                                        <strong>Question n°22</strong>
-                                    </div>
-
-                                    <div className="row">
-
-
-                                        <div className="col-3">
-                                            <p>01/09</p>
-                                        </div>
-                                        <div className="col-9 d-flex justify-content-end">
-                                             <input type="number" onChange={this.handleChange6} value={this.state.chartData.datasets.data} /> 
-                                        </div>
-
-                                        <div className="col-3">
-                                            <p>07/09</p>
-                                        </div>
-                                        <div className="col-9 d-flex justify-content-end">
-                                            <input type="number" onChange={this.handleChange2} value={this.data} />
-                                        </div>
-
-                                        <div className="col-3">
-                                            <p>15/09</p>
-                                        </div>
-                                        <div className="col-9 d-flex justify-content-end">
-                                            <input type="number" onChange={this.handleChange3} value={this.data} />
-                                        </div>
-
-                                        <div className="col-3">
-                                            <p>22/09</p>
-                                        </div>
-                                        <div className="col-9 d-flex justify-content-end">
-                                            <input type="number" onChange={this.handleChange4} value={this.data} />
-                                        </div>
-
-
-                                        <div className="col-3">
-                                            <p>31/09</p>
-                                        </div>
-                                        <div className="col-9 d-flex justify-content-end">
-                                            <input type="number" onChange={this.handleChange5} value={this.data} />
-                                        </div>
-                                    </div>
-                                </div> */}
-
-
-
-                            {/* <div className="col-sm-6 bleu conteneur">
-                                <div className="row d-flex justify-content-between align-items-center ">
-                                    <h4>
-                                        <strong style={{ display: "flex", justifyContent: "center" }}>Mettre à jour vos informations</strong>
-                                    </h4>
-
-                                    <div className="row">
-                                        <div className='col-12'>
-                                            <ul href="/beneficiaire-logement" className=''><p>
-                                                <strong>
-                                                    <div className="row d-flex justify-content-between">
-                                                        <li className='col-10'>21. Mes atouts liés à la recherche d'emploi</li>
-                                                        <button onClick={this.handleClick} className='col-2'>MaJ</button>
-                                                        
-                                                    </div>
-                                                    <div className="row d-flex justify-content-between">
-                                                        <li className='col-10'>22. Mes atouts pour accéder à un emploi</li>
-                                                        <button onClick={this.handleClick2} className='col-2'>MaJ</button>
-                                                        
-                                                    </div>
-                                                    <div className="row d-flex justify-content-between">
-                                                        <li className='col-10'>23. Mon expérience professionnelle</li>
-                                                        <button onClick={this.handleClick3} className='col-2'>MaJ</button>
-                                                        
-                                                    </div>
-                                                    <div className="row d-flex justify-content-between">
-                                                        <li className='col-10'>24. Quelle est la durée de mon dernier contrat de travail ?</li>
-                                                        <button onClick={this.handleClick4} className='col-2'>MaJ</button>
-                                                        
-                                                    </div>
-                                                    <div className="row d-flex justify-content-between">
-                                                        <li className='col-10'>25. Les démarches que j'entreprends pour trouver un emploi</li>
-                                                        <button onClick={this.handleClick5} className='col-2'>MaJ</button>
-                                                        
-                                                    </div>
-                                                    <div className="row d-flex justify-content-between">
-                                                        <li className='col-10'>26. Ma dernière démarche remonte à :</li>
-                                                        <button onClick={this.handleClick6} className='col-2'>MaJ</button>
-                                                        
-                                                    </div>
-                                                </strong>
-                                            </p>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> */}
-
-
-
-                            <div className="col-12 col-sm-6 col-lg-4">
-                                <div className="submit-form">
-                                    {this.state.submitted ? (
-                                        <div>
-                                            <h4>You submitted successfully!</h4>
-                                            <button className="btn btn-success" onClick={this.newDonnees}>
-                                                Add
-                                            </button>
-                                        </div>
-                                    ) : (
-                                        <div>
-                                            <AddDonnee />
-                                        </div>
-                                    )}
-                                </div>
-                                <div className="row">
-                                    <div className="col-12">
-                                        {/* <Messagerie /> */}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  render() {
+    const { currentUser } = this.state;
+    let date = new Date();
+    let date2 = new Date(date.getMonth()-1); // 2020-06-21
+    let mois = new Array
+      ("Janvier",
+      "Février",
+      "Mars",
+      "Avril",
+      "Mai",
+      "Juin",
+      "Juillet",
+      "Août",
+      "Septembre",
+      "Octobre",
+      "Novembre",
+      "Décembre")
+    ;
+    let longMonth = date.toLocaleString("fr-fr", { month: "long" });
+    let beforeMonth = date2.toLocaleString("fr-fr", { month: "long" });
+    return (
+      <div>
+        <div className="row">
+          <div className=" col-1">
+            <NavBeneficiaire />
+          </div>
+          <div
+            className="container-fluid col-11"
+            style={{ padding: "0 2% 0 2%" }}
+          >
+            <div
+              className="col-6"
+              style={{
+                borderBottom: "2px solid black",
+                marginTop: "2%",
+                display: "flex",
+                justifyContent: "space-between",
+              }}
+            >
+              <h2>
+                Catégorie {this.state.categorie} de {currentUser.nom}{" "}
+                {currentUser.prenom}{" "}
+              </h2>
+              <div className="d-flex  d-none d-md-block">
+                <FontAwesomeIcon icon="wrench" id="icones" />
+              </div>
             </div>
-        )
-    }
+            <div className="row d-flex justify-content-between">
+              <div className="col-12 col-sm-6 col-lg-8 ">
+                <div
+                  style={{
+                    border: "1px solid black",
+                    backgroundColor: "white",
+                    margin: "2% 0 2% 0",
+                  }}
+                >
+                  <ChartsFinance />
+                </div>
+              </div>
+              <div className="col-12 col-sm-6 col-lg-4">
+                {this.state.submitted ? (
+                  <div>
+                    <h4>Les données ont bien été enregistrées!</h4>
+                    <button
+                      className="btn btn-success"
+                      onClick={this.newDonnee}
+                    >
+                      Add
+                    </button>
+                  </div>
+                ) : (
+                  <div>
+                    {this.state.isShow ? (
+                      <div style={{ marginTop: "2%" }}>
+                        <span>
+                          <h3>
+                            Actualisation pour la période de : <br />{" "}
+                            <strong>{beforeMonth}</strong>
+                          </h3>
+                        </span>
+                        <span>Selectionnez le mois actuel : &nbsp;</span>
+                        <button
+                          onClick={this.handleChangeMonth}
+                          value={longMonth}
+                          onChange={this.onChangemois}
+                          className="btn btn-success"
+                        >
+                          {longMonth}
+                        </button>
+                      </div>
+                    ) : (
+                      <div style={{ marginTop: "2%" }}>
+                        <span>
+                          <h3>
+                            Actualisation pour la période de :{" "}
+                            <strong>{longMonth}</strong>
+                          </h3>
+                        </span>
+                        <span>Selectionnez le mois précédent : &nbsp;</span>
+                        <button
+                          onClick={this.handleChangeMonth}
+                          value={beforeMonth}
+                          className="btn btn-success"
+                        >
+                          {beforeMonth}
+                        </button>
+                      </div>
+                    )}
+
+                    <div className="input-group mb-3">
+                      <label htmlFor="mois">selectionnez la valeur</label>
+                      <select
+                        className="form-control"
+                        id="valeur"
+                        value={this.state.valeur}
+                        onChange={this.onChangevaleur}
+                      >
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                    </div>
+                    <button
+                      onClick={this.saveDonnee}
+                      className="btn btn-success"
+                    >
+                      Envoyer
+                    </button>
+                  </div>
+                )}
+
+                <div className="row">
+                  <div className="col-12">{/* <Messagerie /> */}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default Finance
+export default Finance;
