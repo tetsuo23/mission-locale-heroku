@@ -22,28 +22,28 @@
         type: Sequelize.INTEGER,
       },
       Sante_4_1: {
-         type: Sequelize.INTEGER,
+         type: Sequelize.STRING,
        },
       Sante_4_2: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
       Sante_4_3: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
       Sante_4_4: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
       Sante_5: {
         type: Sequelize.INTEGER,
       },
       Sante_5_1: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
       Sante_5_2: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
       Sante_5_3: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       }
    });
 

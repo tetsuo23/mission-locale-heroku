@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import axios from "axios";
+import authHeader from "./../../services/auth-header";
 
 import PostDataService from "./../../services/post.service";
 import AuthService from "./../../services/auth.service";
@@ -12,13 +14,11 @@ export default class Citoyennete2 extends Component {
     super(props);
 
     this.onChangemois = this.onChangemois.bind(this);
-    this.onChangeQ_1 = this.onChangeQ_1.bind(this);
     this.onChangeQ_1_1 = this.onChangeQ_1_1.bind(this);
     this.onChangeQ_1_2 = this.onChangeQ_1_2.bind(this);
     this.onChangeQ_1_3 = this.onChangeQ_1_3.bind(this);
     this.onChangeQ_1_4 = this.onChangeQ_1_4.bind(this);
     this.onChangeQ_1_5 = this.onChangeQ_1_5.bind(this);
-    this.onChangeQ_2 = this.onChangeQ_2.bind(this);
     this.onChangeQ_2_1 = this.onChangeQ_2_1.bind(this);
     this.onChangeQ_2_2 = this.onChangeQ_2_2.bind(this);
     this.onChangeQ_2_3 = this.onChangeQ_2_3.bind(this);
@@ -35,27 +35,41 @@ export default class Citoyennete2 extends Component {
     this.saveDonnee = this.saveDonnee.bind(this);
     this.newDonnee = this.newDonnee.bind(this);
 
+    this.onClickQ1_1 = this.onClickQ1_1.bind(this);
+    this.onClickQ1_2 = this.onClickQ1_2.bind(this);
+    this.onClickQ1_3 = this.onClickQ1_3.bind(this);
+    this.onClickQ1_4 = this.onClickQ1_4.bind(this);
+    this.onClickQ1_5 = this.onClickQ1_5.bind(this);
+    this.onClickQ2_1 = this.onClickQ2_1.bind(this);
+    this.onClickQ2_2 = this.onClickQ2_2.bind(this);
+    this.onClickQ2_3 = this.onClickQ2_3.bind(this);
+    this.onClickQ2_4 = this.onClickQ2_4.bind(this);
+    this.onClickQ2_5 = this.onClickQ2_5.bind(this);
+    this.onClickQ2_6 = this.onClickQ2_6.bind(this);
+    this.onClickQ2_7 = this.onClickQ2_7.bind(this);
+
     this.state = {
       id: null,
       mois: "",
-      categorie: "Citoyenneté",
+      categorie: "Citoyenneté",     
+      valData: [],
       moisUser: "",
       valeur: 0,
 
       Citoyennete_1: null,
-      Citoyennete_1_1: null,
-      Citoyennete_1_2: null,
-      Citoyennete_1_3: null,
-      Citoyennete_1_4: null,
-      Citoyennete_1_5: null,
+      Citoyennete_1_1: "",
+      Citoyennete_1_2: "",
+      Citoyennete_1_3: "",
+      Citoyennete_1_4: "",
+      Citoyennete_1_5: "",
       Citoyennete_2: null,
-      Citoyennete_2_1: null,
-      Citoyennete_2_2: null,
-      Citoyennete_2_3: null,
-      Citoyennete_2_4: null,
-      Citoyennete_2_5: null,
-      Citoyennete_2_6: null,
-      Citoyennete_2_7: null,
+      Citoyennete_2_1: "",
+      Citoyennete_2_2: "",
+      Citoyennete_2_3: "",
+      Citoyennete_2_4: "",
+      Citoyennete_2_5: "",
+      Citoyennete_2_6: "",
+      Citoyennete_2_7: "",
       Citoyennete_3: null,
       Citoyennete_4: null,
       Citoyennete_5: null,
@@ -63,19 +77,19 @@ export default class Citoyennete2 extends Component {
       Citoyennete_7: null,
       Citoyennete_8: null,
       Q_1: null,
-      Q_1_1: null,
-      Q_1_2: null,
-      Q_1_3: null,
-      Q_1_4: null,
-      Q_1_5: null,
+      Q_1_1: true,
+      Q_1_2: true,
+      Q_1_3: true,
+      Q_1_4: true,
+      Q_1_5: true,
       Q_2: null,
-      Q_2_1: null,
-      Q_2_2: null,
-      Q_2_3: null,
-      Q_2_4: null,
-      Q_2_5: null,
-      Q_2_6: null,
-      Q_2_7: null,
+      Q_2_1: true,
+      Q_2_2: true,
+      Q_2_3: true,
+      Q_2_4: true,
+      Q_2_5: true,
+      Q_2_6: true,
+      Q_2_7: true,
       Q_3: null,
       Q_4: null,
       Q_5: null,
@@ -112,6 +126,21 @@ export default class Citoyennete2 extends Component {
         }
       }
     );
+
+    axios
+      .get(
+        `http://localhost:8080/api/posts/citoyennete/${currentUser.prenom}/citoyennete`,
+        { headers: authHeader() }
+      )
+
+      .then((res) => {
+        const valData = res.data;
+        const valeur2 = res.data;
+        this.setState({ valData, valeur2 });
+        console.log(valData);
+        return JSON.stringify(valData);
+      });
+
     let date = new Date();
     let longMonth = date.toLocaleString("fr-fr", { month: "long" });
     if (!currentUser) this.setState({ redirect: "/home" });
@@ -133,74 +162,65 @@ export default class Citoyennete2 extends Component {
       moisUser: e.target.value,
     });
   }
-  onChangeQ_1(e) {
-    this.setState({
-      Q_1_1: Number(e.target.value),
-    });
-  }
   onChangeQ_1_1(e) {
     this.setState({
-      Q_1_1: Number(e.target.value),
+      Q_1_1: !e.target.checked,
     });
   }
   onChangeQ_1_2(e) {
     this.setState({
-      Q_1_2: Number(e.target.value),
+      Q_1_2: !e.target.checked,
     });
   }
   onChangeQ_1_3(e) {
     this.setState({
-      Q_1_3: Number(e.target.value),
+      Q_1_3: !e.target.checked,
     });
   }
   onChangeQ_1_4(e) {
     this.setState({
-      Q_1_4: Number(e.target.value),
+      Q_1_4: !e.target.checked,
     });
   }
   onChangeQ_1_5(e) {
     this.setState({
-      Q_1_5: Number(e.target.value),
+      Q_1_5: !e.target.checked,
     });
   }
-  onChangeQ_2(e) {
-    this.setState({
-      Q_2_1: Number(e.target.value),
-    });
-  }
+
   onChangeQ_2_1(e) {
     this.setState({
-      Q_2_1: Number(e.target.value),
+      Q_2_1: !e.target.checked,
     });
   }
   onChangeQ_2_2(e) {
     this.setState({
-      Q_2_2: Number(e.target.value),
+      Q_2_2: !e.target.checked,
     });
   }
   onChangeQ_2_3(e) {
     this.setState({
-      Q_2_3: Number(e.target.value),
+      Q_2_3: !e.target.checked,
     });
   }
   onChangeQ_2_4(e) {
     this.setState({
-      Q_2_4: Number(e.target.value),
+      Q_2_4: !e.target.checked,
     });
   }
   onChangeQ_2_5(e) {
     this.setState({
-      Q_2_5: Number(e.target.value),
+      Q_2_5: !e.target.checked,
     });
   }
   onChangeQ_2_6(e) {
     this.setState({
-      Q_2_6: Number(e.target.value),
+      Q_2_6: !e.target.checked,
     });
   }
   onChangeQ_2_7(e) {
     this.setState({
-      Q_2_7: Number(e.target.value),
+      Q_2_7: !e.target.checked,
     });
   }
   onChangeQ_3(e) {
@@ -234,6 +254,103 @@ export default class Citoyennete2 extends Component {
     });
   }
 
+  onClickQ1_1(e) {
+    const Q1_1 = this.state.Q_1_1;
+    if (Q1_1 === true) {
+      this.setState({ Citoyennete_1_1: e.target.value });
+    } else {
+      this.setState({ Citoyennete_1_1: "" });
+    }
+  }
+  onClickQ1_2(e) {
+    const Q1_2 = this.state.Q_1_2;
+    if (Q1_2 === true) {
+      this.setState({ Citoyennete_1_2: e.target.value });
+    } else {
+      this.setState({ Citoyennete_1_2: "" });
+    }
+  }
+  onClickQ1_3(e) {
+    const Q1_3 = this.state.Q_1_3;
+    if (Q1_3 === true) {
+      this.setState({ Citoyennete_1_3: e.target.value });
+    } else {
+      this.setState({ Citoyennete_1_3: "" });
+    }
+  }
+  onClickQ1_4(e) {
+    const Q1_4 = this.state.Q_1_4;
+    if (Q1_4 === true) {
+      this.setState({ Citoyennete_1_4: e.target.value });
+    } else {
+      this.setState({ Citoyennete_1_4: "" });
+    }
+  }
+  onClickQ1_5(e) {
+    const Q1_5 = this.state.Q_1_5;
+    if (Q1_5 === true) {
+      this.setState({ Citoyennete_1_5: e.target.value });
+    } else {
+      this.setState({ Citoyennete_1_5: "" });
+    }
+  }
+  onClickQ2_1(e) {
+    const Q2_1 = this.state.Q_2_1;
+    if (Q2_1 === true) {
+      this.setState({ Citoyennete_2_1: e.target.value });
+    } else {
+      this.setState({ Citoyennete_2_1: "" });
+    }
+  }
+  onClickQ2_2(e) {
+    const Q2_2 = this.state.Q_2_2;
+    if (Q2_2 === true) {
+      this.setState({ Citoyennete_2_2: e.target.value });
+    } else {
+      this.setState({ Citoyennete_2_2: "" });
+    }
+  }
+  onClickQ2_3(e) {
+    const Q2_3 = this.state.Q_2_3;
+    if (Q2_3 === true) {
+      this.setState({ Citoyennete_2_3: e.target.value });
+    } else {
+      this.setState({ Citoyennete_2_3: "" });
+    }
+  }
+  onClickQ2_4(e) {
+    const Q2_4 = this.state.Q_2_4;
+    if (Q2_4 === true) {
+      this.setState({ Citoyennete_2_4: e.target.value });
+    } else {
+      this.setState({ Citoyennete_2_4: "" });
+    }
+  }
+  onClickQ2_5(e) {
+    const Q2_5 = this.state.Q_2_5;
+    if (Q2_5 === true) {
+      this.setState({ Citoyennete_2_5: e.target.value });
+    } else {
+      this.setState({ Citoyennete_2_5: "" });
+    }
+  }
+  onClickQ2_6(e) {
+    const Q2_6 = this.state.Q_2_6;
+    if (Q2_6 === true) {
+      this.setState({ Citoyennete_2_6: e.target.value });
+    } else {
+      this.setState({ Citoyennete_2_6: "" });
+    }
+  }
+  onClickQ2_7(e) {
+    const Q2_7 = this.state.Q_2_7;
+    if (Q2_7 === true) {
+      this.setState({ Citoyennete_2_7: e.target.value });
+    } else {
+      this.setState({ Citoyennete_2_7: "" });
+    }
+  }
+
   saveDonnee() {
     const user = { ...this.state.currentUser };
     const add =
@@ -248,18 +365,18 @@ export default class Citoyennete2 extends Component {
       valeur: add,
       userId: user.prenom,
       categorie: this.state.categorie,
-      Citoyennete_1_1: this.state.Q_1_1,
-      Citoyennete_1_2: this.state.Q_1_2,
-      Citoyennete_1_3: this.state.Q_1_3,
-      Citoyennete_1_4: this.state.Q_1_4,
-      Citoyennete_1_5: this.state.Q_1_5,
-      Citoyennete_2_1: this.state.Q_2_1,
-      Citoyennete_2_2: this.state.Q_2_2,
-      Citoyennete_2_3: this.state.Q_2_3,
-      Citoyennete_2_4: this.state.Q_2_4,
-      Citoyennete_2_5: this.state.Q_2_5,
-      Citoyennete_2_6: this.state.Q_2_6,
-      Citoyennete_2_7: this.state.Q_2_7,
+      Citoyennete_1_1: this.state.Citoyennete_1_1,
+      Citoyennete_1_2: this.state.Citoyennete_1_2,
+      Citoyennete_1_3: this.state.Citoyennete_1_3,
+      Citoyennete_1_4: this.state.Citoyennete_1_4,
+      Citoyennete_1_5: this.state.Citoyennete_1_5,
+      Citoyennete_2_1: this.state.Citoyennete_2_1,
+      Citoyennete_2_2: this.state.Citoyennete_2_2,
+      Citoyennete_2_3: this.state.Citoyennete_2_3,
+      Citoyennete_2_4: this.state.Citoyennete_2_4,
+      Citoyennete_2_5: this.state.Citoyennete_2_5,
+      Citoyennete_2_6: this.state.Citoyennete_2_6,
+      Citoyennete_2_7: this.state.Citoyennete_2_7,
       Citoyennete_3: this.state.Q_3,
       Citoyennete_4: this.state.Q_4,
       Citoyennete_5: this.state.Q_5,
@@ -317,6 +434,79 @@ export default class Citoyennete2 extends Component {
   }
 
   render() {
+    const { valData } = this.state;
+    const dataVal1_1 = valData.map((Citoyennete_1_1, index) => {
+      if (valData.length - 1 === index) {
+        console.log(`${Citoyennete_1_1.Citoyennete_1_1}`);
+        return `${Citoyennete_1_1.Citoyennete_1_1}`;
+      }
+    });
+    const dataVal1_2 = valData.map((Citoyennete_1_2, index) => {
+      if (valData.length - 1 === index) {
+        console.log(`${Citoyennete_1_2.Citoyennete_1_2}`);
+        return `${Citoyennete_1_2.Citoyennete_1_2}`;
+      }
+    });
+    const dataVal1_3 = valData.map((Citoyennete_1_3, index) => {
+      if (valData.length - 1 === index) {
+        console.log(`${Citoyennete_1_3.Citoyennete_1_3}`);
+        return `${Citoyennete_1_3.Citoyennete_1_3}`;
+      }
+    });
+    const dataVal1_4 = valData.map((Citoyennete_1_4, index) => {
+      if (valData.length - 1 === index) {
+        console.log(`${Citoyennete_1_4.Citoyennete_1_4}`);
+        return `${Citoyennete_1_4.Citoyennete_1_4}`;
+      }
+    });
+    const dataVal1_5 = valData.map((Citoyennete_1_5, index) => {
+      if (valData.length - 1 === index) {
+        console.log(`${Citoyennete_1_5.Citoyennete_1_5}`);
+        return `${Citoyennete_1_5.Citoyennete_1_5}`;
+      }
+    });
+    const dataVal2_1 = valData.map((Citoyennete_2_1, index) => {
+      if (valData.length - 1 === index) {
+        console.log(`${Citoyennete_2_1.Citoyennete_2_1}`);
+        return `${Citoyennete_2_1.Citoyennete_2_1}`;
+      }
+    });
+    const dataVal2_2 = valData.map((Citoyennete_2_2, index) => {
+      if (valData.length - 1 === index) {
+        console.log(`${Citoyennete_2_2.Citoyennete_2_2}`);
+        return `${Citoyennete_2_2.Citoyennete_2_2}`;
+      }
+    });
+    const dataVal2_3 = valData.map((Citoyennete_2_3, index) => {
+      if (valData.length - 1 === index) {
+        console.log(`${Citoyennete_2_3.Citoyennete_2_3}`);
+        return `${Citoyennete_2_3.Citoyennete_2_3}`;
+      }
+    });
+    const dataVal2_4 = valData.map((Citoyennete_2_4, index) => {
+      if (valData.length - 1 === index) {
+        console.log(`${Citoyennete_2_4.Citoyennete_2_4}`);
+        return `${Citoyennete_2_4.Citoyennete_2_4}`;
+      }
+    });
+    const dataVal2_5 = valData.map((Citoyennete_2_5, index) => {
+      if (valData.length - 1 === index) {
+        console.log(`${Citoyennete_2_5.Citoyennete_2_5}`);
+        return `${Citoyennete_2_5.Citoyennete_2_5}`;
+      }
+    });
+    const dataVal2_6 = valData.map((Citoyennete_2_6, index) => {
+      if (valData.length - 1 === index) {
+        console.log(`${Citoyennete_2_6.Citoyennete_2_6}`);
+        return `${Citoyennete_2_6.Citoyennete_2_6}`;
+      }
+    });
+    const dataVal2_7 = valData.map((Citoyennete_2_7, index) => {
+      if (valData.length - 1 === index) {
+        console.log(`${Citoyennete_2_7.Citoyennete_2_7}`);
+        return `${Citoyennete_2_7.Citoyennete_2_7}`;
+      }
+    });
     return (
       <div>
         <div
@@ -356,8 +546,10 @@ export default class Citoyennete2 extends Component {
                 onChange={this.onChangeQ_1}
               >
                 <div className="row">
-                  <div className="col-12 col-sm-5">
+                  <div className="col-12 col-sm-7">
                     <Form.Check
+                      checked={!this.state.Q_1_1}
+                      onClick={this.onClickQ1_1}
                       type="checkbox"
                       label="J'ai été bénévole dans une association"
                       value={this.state.Q_1_1}
@@ -368,9 +560,11 @@ export default class Citoyennete2 extends Component {
                 <div className="row">
                   <div className="col-12 col-sm-9">
                     <Form.Check
+                      checked={!this.state.Q_1_2}
+                      onClick={this.onClickQ1_2}
                       type="checkbox"
                       label="J'ai réalisé la journée de Défense et de Citoyenneté"
-                      value={this.state.Q_1_2}
+                      value="J'ai réalisé la journée de Défense et de Citoyenneté"
                       onChange={this.onChangeQ_1_2}
                     />
                   </div>
@@ -378,9 +572,11 @@ export default class Citoyennete2 extends Component {
                 <div className="row">
                   <div className="col-12 col-sm-9">
                     <Form.Check
+                      checked={!this.state.Q_1_3}
+                      onClick={this.onClickQ1_3}
                       type="checkbox"
                       label="J'ai été délégué de classe "
-                      value={this.state.Q_1_3}
+                      value="J'ai été délégué de classe "
                       onChange={this.onChangeQ_1_3}
                     />
                   </div>
@@ -388,9 +584,11 @@ export default class Citoyennete2 extends Component {
                 <div className="row">
                   <div className="col-12 col-sm-9">
                     <Form.Check
+                      checked={!this.state.Q_1_4}
+                      onClick={this.onClickQ1_4}
                       type="checkbox"
                       label="J'ai participé à des projets citoyens dans le cadre de ma scolarité'"
-                      value={this.state.Q_1_4}
+                      value="J'ai participé à des projets citoyens dans le cadre de ma scolarité'"
                       onChange={this.onChangeQ_1_4}
                     />
                   </div>
@@ -398,9 +596,11 @@ export default class Citoyennete2 extends Component {
                 <div className="row">
                   <div className="col-12 col-sm-1">
                     <Form.Check
+                      checked={!this.state.Q_1_5}
+                      onClick={this.onClickQ1_5}
                       type="checkbox"
                       label="Autre"
-                      value={this.state.Q_1_5}
+                      value="Autre"
                       onChange={this.onChangeQ_1_5}
                     />
                   </div>
@@ -417,6 +617,14 @@ export default class Citoyennete2 extends Component {
                     ></textarea>
                   </div>
                 </div>
+                <div className="orange" style={{ padding: "2%" }}>
+                <strong>Les dernières entrées sont : </strong>
+                <p>{dataVal1_1}</p>
+                <p>{dataVal1_2}</p>
+                <p>{dataVal1_3}</p>
+                <p>{dataVal1_4}</p>
+                <p>{dataVal1_5}</p>
+</div>
               </div>
             </div>
 
@@ -443,21 +651,25 @@ export default class Citoyennete2 extends Component {
                 onChange={this.onChangeQ_2}
               >
                 <div className="row">
-                  <div className="col-12 col-sm-5">
+                  <div className="col-12 col-sm-10">
                     <Form.Check
+                      checked={!this.state.Q_2_1}
+                      onClick={this.onClickQ2_1}
+                      onChange={this.onChangeQ_2_1}
                       type="checkbox"
                       label="Je suis recensé auprès de la mairie de ma commune"
-                      value={this.state.Q_2_1}
-                      onChange={this.onChangeQ_2_1}
+                      value="Je suis recensé auprès de la mairie de ma commune"
                     />
                   </div>
                 </div>
                 <div className="row">
                   <div className="col-12 col-sm-9">
                     <Form.Check
+                      checked={!this.state.Q_2_2}
+                      onClick={this.onClickQ2_2}
                       type="checkbox"
                       label="Je déclare mes impôts"
-                      value={this.state.Q_2_2}
+                      value="Je déclare mes impôts"
                       onChange={this.onChangeQ_2_2}
                     />
                   </div>
@@ -465,9 +677,11 @@ export default class Citoyennete2 extends Component {
                 <div className="row">
                   <div className="col-12 col-sm-9">
                     <Form.Check
+                      checked={!this.state.Q_2_3}
+                      onClick={this.onClickQ2_3}
                       type="checkbox"
                       label="Je suis inscrit au pôle Citoyennete"
-                      value={this.state.Q_2_3}
+                      value="Je suis inscrit au pôle Citoyennete"
                       onChange={this.onChangeQ_2_3}
                     />
                   </div>
@@ -475,9 +689,11 @@ export default class Citoyennete2 extends Component {
                 <div className="row">
                   <div className="col-12 col-sm-9">
                     <Form.Check
+                      checked={!this.state.Q_2_4}
+                      onClick={this.onClickQ2_4}
                       type="checkbox"
                       label="Je suis allocataire de la Caisse d'allocations familale"
-                      value={this.state.Q_2_4}
+                      value="Je suis allocataire de la Caisse d'allocations familale"
                       onChange={this.onChangeQ_2_4}
                     />
                   </div>
@@ -485,9 +701,11 @@ export default class Citoyennete2 extends Component {
                 <div className="row">
                   <div className="col-12 col-sm-9">
                     <Form.Check
+                      checked={!this.state.Q_2_5}
+                      onClick={this.onClickQ2_5}
                       type="checkbox"
                       label="Je sais remplir undocument administratif (CERFA, dossier d'inscription, ...)"
-                      value={this.state.Q_2_5}
+                      value="Je sais remplir undocument administratif (CERFA, dossier d'inscription, ...)"
                       onChange={this.onChangeQ_2_5}
                     />
                   </div>
@@ -495,9 +713,11 @@ export default class Citoyennete2 extends Component {
                 <div className="row">
                   <div className="col-12 col-sm-9">
                     <Form.Check
+                      checked={!this.state.Q_2_6}
+                      onClick={this.onClickQ2_6}
                       type="checkbox"
                       label="Je suis en difficultés avec les démarches administratives"
-                      value={this.state.Q_2_6}
+                      value="Je suis en difficultés avec les démarches administratives"
                       onChange={this.onChangeQ_2_6}
                     />
                   </div>
@@ -505,9 +725,11 @@ export default class Citoyennete2 extends Component {
                 <div className="row">
                   <div className="col-12 col-sm-1">
                     <Form.Check
+                      checked={!this.state.Q_2_7}
+                      onClick={this.onClickQ2_7}
                       type="checkbox"
                       label="Autre"
-                      value={this.state.Q_2_7}
+                      value="Autre"
                       onChange={this.onChangeQ_2_7}
                     />
                   </div>
@@ -525,6 +747,15 @@ export default class Citoyennete2 extends Component {
                   </div>
                 </div>
               </div>
+              <div className="orange" style={{ padding: "2%" }}>
+                <strong>Les dernières entrées sont : </strong>
+                <p>{dataVal2_1}</p>
+                <p>{dataVal2_2}</p>
+                <p>{dataVal2_3}</p>
+                <p>{dataVal2_4}</p>
+                <p>{dataVal2_5}</p>
+                <p>{dataVal2_6}</p>
+                <p>{dataVal2_7}</p>              </div>
             </div>
           </div>
           <div className="section-checkbox col-12" style={{ marginTop: "5%" }}>

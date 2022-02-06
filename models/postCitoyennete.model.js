@@ -10,40 +10,40 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
       },
       Citoyennete_1_1: {
-       type: Sequelize.INTEGER,
+       type: Sequelize.STRING,
      },
      Citoyennete_1_2: {
-       type: Sequelize.INTEGER,
+       type: Sequelize.STRING,
      },
      Citoyennete_1_3: {
-       type: Sequelize.INTEGER,
+       type: Sequelize.STRING,
      },
      Citoyennete_1_4: {
-       type: Sequelize.INTEGER,
+       type: Sequelize.STRING,
      },
      Citoyennete_1_5: {
-       type: Sequelize.INTEGER,
+       type: Sequelize.STRING,
      },
      Citoyennete_2_1: {
-       type: Sequelize.INTEGER,
+       type: Sequelize.STRING,
      },
      Citoyennete_2_2: {
-       type: Sequelize.INTEGER,
+       type: Sequelize.STRING,
      },
      Citoyennete_2_3: {
-       type: Sequelize.INTEGER,
+       type: Sequelize.STRING,
      },
      Citoyennete_2_4: {
-       type: Sequelize.INTEGER,
+       type: Sequelize.STRING,
      },
      Citoyennete_2_5: {
-       type: Sequelize.INTEGER,
+       type: Sequelize.STRING,
      },
      Citoyennete_2_6: {
-       type: Sequelize.INTEGER,
+       type: Sequelize.STRING,
      },
      Citoyennete_2_7: {
-       type: Sequelize.INTEGER,
+       type: Sequelize.STRING,
      },
       Citoyennete_3: {
         type: Sequelize.INTEGER,

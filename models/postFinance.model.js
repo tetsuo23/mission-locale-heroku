@@ -16,31 +16,31 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.INTEGER,
     },
     Finance_question_3_1: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING,
     },
     Finance_question_3_2: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING,
     },
     Finance_question_3_3: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING,
     },
     Finance_question_3_4: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING,
     },
     Finance_question_3_5: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING,
     },
     Finance_question_4_1: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING,
     },
     Finance_question_4_2: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING,
     },
     Finance_question_4_3: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING,
     },
     Finance_question_4_4: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING,
     },
     Finance_question_5: {
       type: Sequelize.INTEGER,
