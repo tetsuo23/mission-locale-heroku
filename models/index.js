@@ -30,7 +30,13 @@ db.sequelize = sequelize;
 db.user = require("../models/user.model.js")(sequelize, Sequelize);
 db.role = require("../models/role.model.js")(sequelize, Sequelize);
 db.categorie = require('../models/categories.model')(sequelize, Sequelize)
-db.post = require('../models/post.model')(sequelize, Sequelize)
+db.postMobilite = require('../models/postMobilite.model')(sequelize, Sequelize)
+db.postLogement = require('../models/postLogement.model')(sequelize, Sequelize)
+db.postFinance = require('../models/postFinance.model')(sequelize, Sequelize)
+db.postEmploi = require('../models/postEmploi.model')(sequelize, Sequelize)
+db.postCitoyennete = require('../models/postCitoyennete.model')(sequelize, Sequelize)
+ db.postSante = require('../models/postSante.model')(sequelize, Sequelize)
+
 
 db.role.belongsToMany(db.user, {
   through: "user_roles",

@@ -7,6 +7,8 @@ import AuthService from "../services/auth.service";
 import UserService from "../services/user.service";
 import EventBus from "../common/EventBus";
 
+import Emploi2 from "./Formulaire/Emploi";
+import Messagerie from "./Messagerie";
 
 class Emploi extends Component {
   constructor(props) {
@@ -60,10 +62,6 @@ class Emploi extends Component {
       userReady: true,
       mois: longMonth,
     });
-  }
-
-  componentDidUpdate() {
-    this.newDonnee()
   }
 
   onChangemois(e) {
@@ -123,26 +121,9 @@ class Emploi extends Component {
 
   render() {
     const { currentUser } = this.state;
-    let date = new Date();
-    let date2 = new Date(date.getMonth()-1); // 2020-06-21
-    let mois = new Array
-      ("Janvier",
-      "Février",
-      "Mars",
-      "Avril",
-      "Mai",
-      "Juin",
-      "Juillet",
-      "Août",
-      "Septembre",
-      "Octobre",
-      "Novembre",
-      "Décembre")
-    ;
-    let longMonth = date.toLocaleString("fr-fr", { month: "long" });
-    let beforeMonth = date2.toLocaleString("fr-fr", { month: "long" });
+    
     return (
-      <div>
+      <div style={{padding:'0 0 5% 0'}}>
         <div className="row">
           <div className=" col-1">
             <NavBeneficiaire />
@@ -180,85 +161,12 @@ class Emploi extends Component {
                   <ChartsEmploi />
                 </div>
               </div>
-              <div className="col-12 col-sm-6 col-lg-4">
-                {this.state.submitted ? (
-                  <div>
-                    <h4>Les données ont bien été enregistrées!</h4>
-                    <button
-                      className="btn btn-success"
-                      onClick={this.newDonnee}
-                    >
-                      Add
-                    </button>
-                  </div>
-                ) : (
-                  <div>
-                    {this.state.isShow ? (
-                      <div style={{ marginTop: "2%" }}>
-                        <span>
-                          <h3>
-                            Actualisation pour la période de : <br />{" "}
-                            <strong>{beforeMonth}</strong>
-                          </h3>
-                        </span>
-                        <span>Selectionnez le mois actuel : &nbsp;</span>
-                        <button
-                          onClick={this.handleChangeMonth}
-                          value={longMonth}
-                          onChange={this.onChangemois}
-                          className="btn btn-success"
-                        >
-                          {longMonth}
-                        </button>
-                      </div>
-                    ) : (
-                      <div style={{ marginTop: "2%" }}>
-                        <span>
-                          <h3>
-                            Actualisation pour la période de :{" "}
-                            <strong>{longMonth}</strong>
-                          </h3>
-                        </span>
-                        <span>Selectionnez le mois précédent : &nbsp;</span>
-                        <button
-                          onClick={this.handleChangeMonth}
-                          value={beforeMonth}
-                          className="btn btn-success"
-                        >
-                          {beforeMonth}
-                        </button>
-                      </div>
-                    )}
-
-                    <div className="input-group mb-3">
-                      <label htmlFor="mois">selectionnez la valeur</label>
-                      <select
-                        className="form-control"
-                        id="valeur"
-                        value={this.state.valeur}
-                        onChange={this.onChangevaleur}
-                      >
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                      </select>
-                    </div>
-                    <button
-                      onClick={this.saveDonnee}
-                      className="btn btn-success"
-                    >
-                      Envoyer
-                    </button>
-                  </div>
-                )}
-
-                <div className="row">
-                  <div className="col-12">{/* <Messagerie /> */}</div>
-                </div>
+              <div className="col-12 col-lg-4">
+                {" "}
+                <Messagerie />
               </div>
             </div>
+            <Emploi2 />
           </div>
         </div>
       </div>

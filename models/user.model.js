@@ -10,6 +10,7 @@ module.exports = (sequelize, Sequelize) => {
     //   //   key:"id"
     //   // }
     // },
+    
     nom: {
       type: Sequelize.STRING
     },

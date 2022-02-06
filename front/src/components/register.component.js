@@ -184,7 +184,7 @@ export default class Register extends Component {
           });
         },
         () => {
-          this.props.history.push(`/${this.state.prenom}/premier-formulaire`);
+          this.props.history.push(`/${this.state.prenom}/profile`);
           window.location.reload();
         },
         error => {

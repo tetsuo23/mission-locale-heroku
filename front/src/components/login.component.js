@@ -97,13 +97,9 @@ export default class Login extends Component {
       return <Redirect to={`espace-personnel/${this.state.prenom}`}></Redirect>
   };
     return (
-      <div className="col-md-12"  style={{ backgroundImage:`url(${jeune_dynamique})`, backgroundSize:'cover', height:'100vh', overflowY:'hidden' }}>
+      <div className="col-md-12"  style={{ backgroundImage:`url(${jeune_dynamique})`, backgroundSize:'cover', height:'100vh' }}>
         <div className="card card-container orange2">
-          <img
-            src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-            alt="profile-img"
-            className="profile-img-card"
-          />
+          
 
           <Form
             onSubmit={this.handleLogin}

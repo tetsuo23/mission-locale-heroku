@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import NavBeneficiaire from "./NavBeneficiaire";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ChartsLogement from "./charts-logement";
+import PostDataService from "../services/post.service";
 import AuthService from "../services/auth.service";
 import UserService from "../services/user.service";
 import EventBus from "../common/EventBus";
-import PostDataService from "../services/post.service";
-
+import ChartsLogement from "./charts-logement";
+import Logement2 from "./Formulaire/Logement";
+import Messagerie from "./Messagerie";
 
 class Logement extends Component {
   constructor(props) {
@@ -21,7 +22,8 @@ class Logement extends Component {
       id: null,
       mois: "",
       categorie: "Logement",
-      valeur: "",
+      moisUser: "",
+      valeur: "1",
       currentUser: { prenom: "", nom: "" },
       submitted: false,
     };
@@ -118,146 +120,56 @@ class Logement extends Component {
 
   render() {
     const { currentUser } = this.state;
-    let date = new Date();
-    let date2 = (date.getMonth()-1); // 2020-06-21
-    let mois = new Array
-      ("Janvier",
-      "Février",
-      "Mars",
-      "Avril",
-      "Mai",
-      "Juin",
-      "Juillet",
-      "Août",
-      "Septembre",
-      "Octobre",
-      "Novembre",
-      "Décembre")
-    ;
-    let longMonth = date.toLocaleString("fr-fr", { month: "long" });
-let beforeMonth = date2.toLocaleString("fr-fr", { month: "long" });
+    
     return (
-        <div>
-          <div className="row">
-            <div className=" col-1">
-              <NavBeneficiaire />
-            </div>
+      <div style={{padding:'0 0 5% 0'}}>
+        <div className="row">
+          <div className=" col-1">
+            <NavBeneficiaire />
+          </div>
+          <div
+            className="container-fluid col-11"
+            style={{ padding: "0 2% 0 2%" }}
+          >
             <div
-              className="container-fluid col-11"
-              style={{ padding: "0 2% 0 2%" }}
+              className="col-6"
+              style={{
+                borderBottom: "2px solid black",
+                marginTop: "2%",
+                display: "flex",
+                justifyContent: "space-between",
+              }}
             >
-              <div
-                className="col-6"
-                style={{
-                  borderBottom: "2px solid black",
-                  marginTop: "2%",
-                  display: "flex",
-                  justifyContent: "space-between",
-                }}
-              >
-                <h2>
-                  Catégorie {this.state.categorie} de {currentUser.nom}{" "}
-                  {currentUser.prenom}{" "}
-                </h2>
-                <div className="d-flex  d-none d-md-block">
-                  <FontAwesomeIcon icon="wrench" id="icones" />
-                </div>
-              </div>
-              <div className="row d-flex justify-content-between">
-                <div className="col-12 col-sm-6 col-lg-8 ">
-                  <div
-                    style={{
-                      border: "1px solid black",
-                      backgroundColor: "white",
-                      margin: "2% 0 2% 0",
-                    }}
-                  >
-                    <ChartsLogement />
-                  </div>
-                </div>
-                <div className="col-12 col-sm-6 col-lg-4">
-                  {this.state.submitted ? (
-                    <div>
-                      <h4>Les données ont bien été enregistrées!</h4>
-                      <button
-                        className="btn btn-success"
-                        onClick={this.newDonnee}
-                      >
-                        Add
-                      </button>
-                    </div>
-                  ) : (
-                    <div>
-                      {this.state.isShow ? (
-                        <div style={{ marginTop: "2%" }}>
-                          <span>
-                            <h3>
-                              Actualisation pour la période de : <br />{" "}
-                              <strong>{beforeMonth}</strong>
-                            </h3>
-                          </span>
-                          <span>Selectionnez le mois actuel : &nbsp;</span>
-                          <button
-                            onClick={this.handleChangeMonth}
-                            value={longMonth}
-                            onChange={this.onChangemois}
-                            className="btn btn-success"
-                          >
-                            {longMonth}
-                          </button>
-                        </div>
-                      ) : (
-                        <div style={{ marginTop: "2%" }}>
-                          <span>
-                            <h3>
-                              Actualisation pour la période de :{" "}
-                              <strong>{longMonth}</strong>
-                            </h3>
-                          </span>
-                          <span>Selectionnez le mois précédent : &nbsp;</span>
-                          <button
-                            onClick={this.handleChangeMonth}
-                            value={beforeMonth}
-                            className="btn btn-success"
-                          >
-                            {beforeMonth}
-                          </button>
-                        </div>
-                      )}
-  
-                      <div className="input-group mb-3">
-                        <label htmlFor="mois">selectionnez la valeur</label>
-                        <select
-                          className="form-control"
-                          id="valeur"
-                          value={this.state.valeur}
-                          onChange={this.onChangevaleur}
-                        >
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </select>
-                      </div>
-                      <button
-                        onClick={this.saveDonnee}
-                        className="btn btn-success"
-                      >
-                        Envoyer
-                      </button>
-                    </div>
-                  )}
-  
-                  <div className="row">
-                    <div className="col-12">{/* <Messagerie /> */}</div>
-                  </div>
-                </div>
+              <h2>
+                Catégorie {this.state.categorie} de {currentUser.nom}{" "}
+                {currentUser.prenom}{" "}
+              </h2>
+              <div className="d-flex  d-none d-md-block">
+                <FontAwesomeIcon icon="wrench" id="icones" />
               </div>
             </div>
+            <div className="row d-flex justify-content-between">
+              <div className="col-12 col-sm-6 col-lg-8 ">
+                <div
+                  style={{
+                    border: "1px solid black",
+                    backgroundColor: "white",
+                    margin: "2% 0 2% 0",
+                  }}
+                >
+                  <ChartsLogement />
+                </div>
+              </div>
+              <div className="col-12 col-lg-4">
+                {" "}
+                <Messagerie />
+              </div>
+            </div>
+            <Logement2 />
           </div>
         </div>
-      );
+      </div>
+    );
   }
 }
 

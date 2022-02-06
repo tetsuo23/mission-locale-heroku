@@ -47,28 +47,7 @@ export default class Profile extends Component {
       currentUser
     });
   }
-  // handleMaj(e) {
-  //   e.preventDefault();
-  //   console.log(e)
-  //   this.setState({
-  //     message: "",
-  //     successful: false,
-  //     connect: true
-  //   });
-  // }
-  // handleMaj(e) {
-  //   e.preventDefault();
-
-  //   const state = { ...this.state }
-  //   const data = e.target.value
-  //   state.prenom = data
-  //   this.setState({
-  //     message: "",
-  //     successful: false,
-  //     connect: true,
-  //     state
-  //   });
-  // }
+  
   handleLogin(e) {
     e.preventDefault();
     this.setState({
@@ -121,25 +100,25 @@ export default class Profile extends Component {
     const { currentUser } = this.state;
 
     return (
-      <div className="conteneur fluid" style={{ backgroundImage: `url(${jeune})`, backgroundSize: 'cover', height: '100vh' }}>
+      <div className="conteneur" style={{ backgroundImage: `url(${jeune})`, backgroundSize: 'cover', height: '100vh', width:'100vw' }}>
         {(this.state.userReady) ?
           <div>
             <header className=" d-flex justify-content-between" style={{ padding: '2% 5% 2% 5%', backgroundColor:'#dededeaa' }}>
-              <h3>
+              <div className="row">
+              <h3 className="col-12 col-sm-6">
                 Bienvenue <strong>{currentUser.prenom} {currentUser.nom} </strong>
               </h3>
-              <div>
-                <strong>Status:</strong>{currentUser.roles &&
-                    currentUser.roles.map((role, index) => <li key={index}><strong>{role}</strong></li>)}
+              <div className="col-12 col-sm-6">
+                <strong>Status:{currentUser.roles &&
+                    currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}</strong>
                 <ul>
                   
                 </ul>
               </div>
+              </div>
             </header>
             <div className="row">
-              <div className="col-12 d-flex justify-content-center">
-                <h3>Vos informations personnelles</h3>
-              </div>
+              
             </div>
             {/* <p>
           <strong>Token:</strong>{" "}
@@ -161,6 +140,9 @@ export default class Profile extends Component {
         >
 
           <div className='orange conteneur'>
+            <div className="col-12 d-flex justify-content-center">
+                <h3>Vos informations personnelles</h3>
+              </div>
             <div className="row">
               <div className="form-group col-6">
                 <label htmlFor="nom">Nom</label>

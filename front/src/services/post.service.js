@@ -1,40 +1,11 @@
-import http from "../common/http-common";
 import axios from "axios";
 
-const API_URL = "https://mission-locale-heroku.herokuapp.com/api/";
+// const API_URL = "https://mission-locale-heroku.herokuapp.com/api/";
+const API_URL = "http://localhost:8080/api/";
+const API_URL_2 = "http://localhost:8080/api/posts/";
 
 class PostDataService {
-  // getAll() {
-  //   return http.get("/posts");
-  // }
 
-  // get(userId) {
-  //   return http.get(`/posts/${userId}`);
-  // }
-
-  // create(data) {
-  //   return http.post("/posts", data);
-  // }
-
-  // update(id, data) {
-  //   return http.put(`/posts/${id}`, data);
-  // }
-
-  // delete(id) {
-  //   return http.delete(`/posts/${id}`);
-  // }
-
-  // deleteAll() {
-  //   return http.delete(`/posts`);
-  // }
-
-  // findBymois(mois) {
-  //   return http.get(`/posts?mois=${mois}`);
-  // }
-  // getCurrentUser() {
-  //   return JSON.parse(localStorage.getItem('user'));
-
-  // }
 
   getAll(mois) {
     return axios
@@ -50,6 +21,21 @@ class PostDataService {
 
   create(data) {
     return axios.post(API_URL + "posts", data);
+  }
+  createLogement(data) {
+    return axios.post(API_URL_2 + "log", data);
+  }
+  createFinance(data) {
+    return axios.post(API_URL_2 + "fin", data);
+  }
+  createEmploi(data) {
+    return axios.post(API_URL_2 + "emp", data);
+  }
+  createCitoyennete(data) {
+    return axios.post(API_URL_2 + "cit", data);
+  }
+  createSante(data) {
+    return axios.post(API_URL_2 + "san", data);
   }
 }
 

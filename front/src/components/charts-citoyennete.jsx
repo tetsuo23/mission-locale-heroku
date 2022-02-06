@@ -2,14 +2,13 @@ import axios from "axios";
 import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
 import AuthService from "../services/auth.service";
-import PostDataService from '../services/post.service';
-import authHeader from './../services/auth-header';
+import authHeader from "./../services/auth-header";
 
 class ChartsCitoyennete extends Component {
   state = {
     userId: "",
     mois: [],
-    post:[],
+    post: [],
     valeur: [],
     currentUser: {
       prenom: "",
@@ -23,61 +22,86 @@ class ChartsCitoyennete extends Component {
   componentDidMount() {
     const currentUser = AuthService.getCurrentUser();
     this.setState({ currentUser: currentUser, userReady: true });
-    console.log(currentUser.prenom);
 
-     axios
-       .get(`https://mission-locale-heroku.herokuapp.com/api/posts/${currentUser.prenom}/citoyennete`, { headers: authHeader() } )
-      
-       .then((res) => {
-         const mois = res.data;
-         console.log(mois);
-         // const mois = JSON.stringify(preMois);
-         // mois.toString();
-         const valeur = res.data;
-         this.setState({ mois, valeur });
-         console.log(mois.mois);
-         return JSON.stringify(mois);
-       });
+    axios
+      .get(
+        `http://localhost:8080/api/posts/citoyennete/${currentUser.prenom}/citoyennete`,
+        { headers: authHeader() }
+      )
 
-     PostDataService.getAll()
-       .then((res) => {
-         const post = res.data;
-         this.setState({ post});
-         console.log(post);
-       })
-       .catch(e => {
-         
-         console.log(e);
-       })
+      .then((res) => {
+        const mois = res.data;
+        const valeur = res.data;
+        this.setState({ mois, valeur });
+        console.log(res.data);
+        return JSON.stringify(mois);
+      });
   }
 
   render() {
     const { mois } = this.state;
 
+    const dataVal3 = mois.map((Citoyennete_3) => Citoyennete_3.Citoyennete_3);
+    const dataVal4 = mois.map((Citoyennete_4) => Citoyennete_4.Citoyennete_4);
+    const dataVal5 = mois.map((Citoyennete_5) => Citoyennete_5.Citoyennete_5);
+    const dataVal6 = mois.map((Citoyennete_6) => Citoyennete_6.Citoyennete_6);
+    const dataVal7 = mois.map((Citoyennete_7) => Citoyennete_7.Citoyennete_7);
+    const dataVal8 = mois.map((Citoyennete_8) => Citoyennete_8.Citoyennete_8);
+console.log(dataVal3);
     const chartData = {
       labels: mois.map((mois) => mois.mois),
 
       datasets: [
         {
-          label: "# of Votes",
-          data: mois.map((valeur) => valeur.valeur),
+          label: "Question n°3",
+          data: dataVal3,
+          backgroundColor: "rgb(30,55,  250)",
+          borderColor: "rgba(30,55,  250, 0.4)",
+        },
+        {
+          label: "Question n°4",
+          data: dataVal4,
+          backgroundColor: "rgb(55, 30, 50)",
+          borderColor: "rgba(55, 30, 50, 0.4)",
+        },
+
+        {
+          label: "Question n°5",
+          data: dataVal5,
+          backgroundColor: "rgb(50, 155, 30 )",
+          borderColor: "rgba(50, 155, 30, 0.4)",
+        },
+        {
+          label: "Question n°6",
+          data: dataVal6,
+          backgroundColor: "rgb( 230,120, 0)",
+          borderColor: "rgba( 230,120, 0, 0.4)",
+        },
+        {
+          label: "Question n°7",
+          data: dataVal7,
+          backgroundColor: "rgb(200, 130, 255)",
+          borderColor: "rgba(200, 130, 255, 0.4)",
+        },
+        {
+          label: "Question n°8",
+          data: dataVal8,
           fill: false,
-          backgroundColor: "rgb(255, 99, 132)",
-          borderColor: "rgba(255, 99, 132, 0.2)",
+          backgroundColor: "rgb(255, 30, 150)",
+          borderColor: "rgba(255, 30, 150, 0.4)",
         },
       ],
     };
     console.log(chartData);
     return (
       <div>
-        <h3>Bar Chart</h3>
         <div>
           <Line
+            className="canvasPerso"
             data={chartData}
             options={{
               responsive: true,
-              title: { text: "THICCNESS SCALE", display: true },
-              maintainAspectRatio: true,
+              maintainAspectRatio: false,
               scales: {
                 y: {
                   beginAtZero: true,

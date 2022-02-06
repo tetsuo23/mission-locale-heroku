@@ -50,7 +50,7 @@ class NavBeneficiaire extends Component {
         <Nav
           defaultActiveKey="/home"
           className="flex-column bleu navVert d-none d-xl-block"
-          style={{ height: "100vh", padding: "10vh 0 0 2%" }}
+          style={{ height: "100vh", padding: "10vh 5px 0 5px" }}
         >
           <div className="navbar-nav ml-auto d-flex ">
             {currentUser && (

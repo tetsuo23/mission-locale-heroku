@@ -10,9 +10,10 @@ module.exports = (app) => {
     // router.get("/:id", posts.findOne);
   
     // Retrieve all Tutorials
-    router.get("/:userId/:categorie", users.findAllUserIdAndCat);
+    // router.get("/:userId/:categorie", users.findAllUserIdAndCat);
      router.get("/:userId", users.findAllUserId);
      router.get("/", users.findAll);
+     router.get("/:userId/referent/:beneficiaire", users.findBeneficiaire);
   
     // ----------------------------------------------------------------------- //
   
