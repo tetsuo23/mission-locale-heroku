@@ -25,7 +25,7 @@ class ChartsSante extends Component {
 
     axios
       .get(
-        `http://localhost:8080/api/posts/sante/${currentUser.prenom}/sante`,
+        `http://localhost:8080/api/posts/sante/${currentUser.nom}/sante`,
         { headers: authHeader() }
       )
 
@@ -53,32 +53,32 @@ class ChartsSante extends Component {
 
       datasets: [
         {
-          label: "Question n°7",
+          label: "Question n°28",
           data: dataVal,
           backgroundColor: "rgb(30,55,  250)",
           borderColor: "rgba(30,55,  250, 0.4)",
         },
         {
-          label: "Question n°8",
+          label: "Question n°29",
           data: dataVal2,
           backgroundColor: "rgb(55, 30, 50)",
           borderColor: "rgba(55, 30, 50, 0.4)",
         },
 
         {
-          label: "Question n°9",
+          label: "Question n°30",
           data: dataVal3,
           backgroundColor: "rgb(50, 155, 30 )",
           borderColor: "rgba(50, 155, 30, 0.4)",
         },
         {
-          label: "Question n°20",
+          label: "Question n°34",
           data: dataVal4,
           backgroundColor: "rgb( 230,120, 0)",
           borderColor: "rgba( 230,120, 0, 0.4)",
         },
         {
-          label: "Question n°21",
+          label: "Question n°35",
           data: dataVal5,
           backgroundColor: "rgb(200, 130, 255)",
           borderColor: "rgba(200, 130, 255, 0.4)",
@@ -87,8 +87,7 @@ class ChartsSante extends Component {
     };
     console.log(chartData);
     return (
-      <div>
-        <h3>Bar Chart</h3>
+      
         <div>
           <Line
             className="canvasPerso"
@@ -104,7 +103,7 @@ class ChartsSante extends Component {
             }}
           />
         </div>
-      </div>
+      
     );
   }
 }

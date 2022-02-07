@@ -25,7 +25,7 @@ class chartsLogement extends Component {
 
     axios
       .get(
-        `http://localhost:8080/api/posts/logement/${currentUser.prenom}/logement`,
+        `http://localhost:8080/api/posts/logement/${currentUser.nom}/logement`,
         { headers: authHeader() }
       )
 
@@ -53,7 +53,7 @@ console.log(mois);
 
       datasets: [
         {
-          label: "Question n°12",
+          label: "Question n°7",
           data: dataVal,
           backgroundColor: "rgb(30,55,  250)",
           borderColor: "rgba(30,55,  250, 0.4)",

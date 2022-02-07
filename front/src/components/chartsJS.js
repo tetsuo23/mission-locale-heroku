@@ -24,7 +24,7 @@ class DynamicCharts extends Component {
     this.setState({ currentUser: currentUser, userReady: true });
 
     axios
-      .get(`http://localhost:8080/api/posts/mobilite/${currentUser.prenom}/mobilite`, {
+      .get(`http://localhost:8080/api/posts/mobilite/${currentUser.nom}/mobilite`, {
         headers: authHeader(),
       })
 

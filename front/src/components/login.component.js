@@ -97,7 +97,7 @@ export default class Login extends Component {
       return <Redirect to={`espace-personnel/${this.state.prenom}`}></Redirect>
   };
     return (
-      <div className="col-md-12"  style={{ backgroundImage:`url(${jeune_dynamique})`, backgroundSize:'cover', height:'100vh' }}>
+      <div className="col-md-12 d-flex align-items-center"  style={{ backgroundImage:`url(${jeune_dynamique})`, backgroundSize:'cover', height:'100vh' }}>
         <div className="card card-container orange2">
           
 

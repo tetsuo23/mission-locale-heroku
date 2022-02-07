@@ -182,7 +182,7 @@ export default class Emploi2 extends Component {
 
     axios
       .get(
-        `http://localhost:8080/api/posts/emploi/${currentUser.prenom}/emploi`,
+        `http://localhost:8080/api/posts/emploi/${currentUser.nom}/emploi`,
         { headers: authHeader() }
       )
 
@@ -579,7 +579,7 @@ export default class Emploi2 extends Component {
     var data = {
       mois: this.state.mois,
       total: add,
-      userId: user.prenom,
+      userId: user.nom,
       categorie: this.state.categorie,
       Emploi_1_1: this.state.Emploi_1_1,
       Emploi_1_2: this.state.Emploi_1_2,
@@ -848,10 +848,10 @@ export default class Emploi2 extends Component {
           </div>
         </div>
         <div className="row">
-          <div className="col-6">
+          <div className="col-12 col-lg-6">
             <div className="section-checkbox" style={{ marginTop: "5%" }}>
               <p>
-                <strong>21. Mes atouts liés à la recherche d'emploi</strong>
+                <strong>13. Mes atouts liés à la recherche d'emploi</strong>
               </p>
               <p
                 style={{
@@ -936,7 +936,7 @@ export default class Emploi2 extends Component {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-12 col-sm-1">
+                  {/* <div className="col-12 col-sm-1">
                     <Form.Check
                       checked={!this.state.Q_1_7}
                       onChange={this.onChangeQ_1_7}
@@ -957,7 +957,7 @@ export default class Emploi2 extends Component {
                         borderBottom: "1px solid black",
                       }}
                     ></textarea>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className="orange" style={{ padding: "2%" }}>
@@ -972,10 +972,10 @@ export default class Emploi2 extends Component {
               </div>
             </div>
           </div>
-          <div className="col-6">
+          <div className="col-12 col-lg-6">
             <div className="section-checkbox" style={{ marginTop: "5%" }}>
               <p>
-                <strong>22. Mes atouts pour accéder à un emploi</strong>
+                <strong>14. Mes atouts pour accéder à un emploi</strong>
               </p>
               <p
                 style={{
@@ -1075,10 +1075,10 @@ export default class Emploi2 extends Component {
           {/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
 
           {/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
-          <div className="col-6">
+          <div className="col-12 col-lg-6">
             <div className="section-checkbox" style={{ marginTop: "5%" }}>
               <p>
-                <strong>23. Mon expérience professionnelle</strong>
+                <strong>15. Mon expérience professionnelle</strong>
               </p>
               <p
                 style={{
@@ -1152,7 +1152,7 @@ export default class Emploi2 extends Component {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-12 col-sm-1">
+                  {/* <div className="col-12 col-sm-1">
                     <Form.Check
                       checked={!this.state.Q_3_6}
                       onChange={this.onChangeQ_3_6}
@@ -1173,7 +1173,7 @@ export default class Emploi2 extends Component {
                         borderBottom: "1px solid black",
                       }}
                     ></textarea>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className="orange" style={{ padding: "2%" }}>
@@ -1187,11 +1187,11 @@ export default class Emploi2 extends Component {
               </div>
             </div>
           </div>
-          <div className="col-6">
+          <div className="col-12 col-lg-6">
             <div className="section-checkbox" style={{ marginTop: "5%" }}>
               <p>
                 <strong>
-                  24. Les démarches que j'entreprends pour trouver un emploi
+                  16. Les démarches que j'entreprends pour trouver un emploi
                 </strong>
               </p>
               <p
@@ -1277,7 +1277,7 @@ export default class Emploi2 extends Component {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-12 col-sm-1">
+                  {/* <div className="col-12 col-sm-1">
                     <Form.Check
                       checked={!this.state.Q_4_7}
                       onChange={this.onChangeQ_4_7}
@@ -1286,8 +1286,8 @@ export default class Emploi2 extends Component {
                       label="Autre"
                       value="7"
                     />
-                  </div>
-                  <div className="col-12 col-sm-11">
+                  </div> */}
+                  {/* <div className="col-12 col-sm-11">
                     <textarea
                       name=""
                       id=""
@@ -1298,7 +1298,7 @@ export default class Emploi2 extends Component {
                         borderBottom: "1px solid black",
                       }}
                     ></textarea>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -1317,11 +1317,11 @@ export default class Emploi2 extends Component {
 
         {/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
         <div className="row" style={{ marginBottom: "2%" }}>
-          <div className="col-4">
+          <div className="col-12 col-lg-4">
             <div className="section-checkbox" style={{ marginTop: "5%" }}>
               <p>
                 <strong>
-                  25. Quelle est la durée de mon dernier contrat de travail ?
+                  17. Quelle est la durée de mon dernier contrat de travail ?
                 </strong>
               </p>
               <p
@@ -1353,10 +1353,10 @@ export default class Emploi2 extends Component {
               </div>
             </div>
           </div>
-          <div className="col-4">
+          <div className="col-12 col-lg-4">
             <div className="section-checkbox" style={{ marginTop: "5%" }}>
               <p>
-                <strong>26. Ma dernière démarche remonte à</strong>
+                <strong>18. Ma dernière démarche remonte à</strong>
               </p>
               <p
                 style={{
@@ -1385,11 +1385,11 @@ export default class Emploi2 extends Component {
               </div>
             </div>
           </div>
-          <div className="col-4">
+          {/* <div className="col-12 col-lg-4">
             <div className="section-checkbox" style={{ marginTop: "5%" }}>
               <p>
                 <strong>
-                  27. Pour quelle(s) raison(s) je n'ai pas fait de démarche
+                  19. Pour quelle(s) raison(s) je n'ai pas fait de démarche
                   depuis longtemps
                 </strong>
               </p>
@@ -1411,7 +1411,7 @@ export default class Emploi2 extends Component {
                 <textarea name="" id="" cols="30" rows="10"></textarea>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
         <button
           onClick={this.saveDonnee}

@@ -74,7 +74,7 @@ export default class Logement2 extends Component {
 
     axios
       .get(
-        `http://localhost:8080/api/posts/logement/${currentUser.prenom}/logement`,
+        `http://localhost:8080/api/posts/logement/${currentUser.nom}/logement`,
         { headers: authHeader() }
       )
 
@@ -183,7 +183,7 @@ export default class Logement2 extends Component {
       Logement_question_2_2: this.state.Logement_question_2_2,
       Logement_question_2_3: this.state.Logement_question_2_3,
       total: add,
-      userId: user.prenom,
+      userId: user.nom,
       categorie: this.state.categorie,
       published: this.state.published,
     };
@@ -253,11 +253,11 @@ export default class Logement2 extends Component {
           </div>
         </div>
         <div className="row" style={{ marginBottom: "2%" }}>
-          <div className="col-4">
+          <div className=" col-12 col-lg-4">
             <div className="section-checkbox" style={{ marginTop: "5%" }}>
               <p>
                 <strong>
-                  12. Parmi les affirmations suivantes, laquelle correspond le
+                  7. Parmi les affirmations suivantes, laquelle correspond le
                   mieux à votre situation ?
                 </strong>
               </p>
@@ -296,11 +296,11 @@ export default class Logement2 extends Component {
               </div>
             </div>
           </div>
-          <div className="col-8">
+          <div className=" col-12 col-lg-8">
             <div className="section-checkbox" style={{ marginTop: "2%" }}>
               <p>
                 <strong>
-                  13. Parmi les informations suivantes, je choisi celles qui
+                  8. Parmi les informations suivantes, je choisi celles qui
                   correspondent le mieux à mes besoins.
                 </strong>
               </p>

@@ -112,7 +112,7 @@ class App extends Component {
             expand="lg"
             fixed="top"
           >
-            <div className="col-1 col-lg-1 col-xl-1 d-flex justify-content-start d-none d-md-block ">
+            <div className=" col-md-1 col-xl-1  d-none d-md-block ">
               <img
                 fluid="true"
                 src={logo}
@@ -122,15 +122,12 @@ class App extends Component {
               />
             </div>
 
-            <div className="col-8 col-sm-8 col-md-10 col-lg-6 col-xl-7 d-flex justify-content-md-center justify-content-xs-center">
+            <div className="col-8 col-sm-8 col-md-9 col-lg-6 col-xl-7 d-flex justify-content-center justify-content-xs-center">
               <h2>Plateforme garantie jeune</h2>
             </div>
 
-            <div className="col-1 col-md-1 col-lg-5 col-xl-4 justify-content-start">
-              <Navbar.Toggle
-                aria-controls="basic-navbar-nav"
-                className=""
-              />
+            <div className="col-1 col-md-1 col-lg-6 col-xl-4 justify-content-start">
+              <Navbar.Toggle aria-controls="basic-navbar-nav" className="" />
               <Navbar.Collapse
                 id="basic-navbar-nav"
                 className="justify-content-start"
@@ -189,91 +186,86 @@ class App extends Component {
             </div>
           </Navbar>
         ) : (
-          <Container>
-            <Navbar className="bleu d-flex " expand="lg" fixed="top" style={{width:'100vw'}}>
-              <div className="col-1 col-lg-1 col-xl-1 justify-content-start d-none d-sm-block ">
-                <img
-                  fluid="true"
-                  src={logo}
-                  alt="logo missions locales"
-                  style={{ width: "6vw", minWidth: "70px" }}
-                  className=""
-                />
-              </div>
-              <div className=" col-9 col-sm-9 col-lg-6 col-xl-7 d-flex justify-content-center justify-content-lg-end">
-                <h2>Plateforme garantie jeune</h2>
-              </div>
-              <div className="col-3 col-md-2 col-lg-5 col-xl-4 ">
-                <Navbar.Toggle aria-controls="basic-navbar-nav" className="" />
-                <Navbar.Collapse
-                  id="basic-navbar-nav"
-                  
-                >
-                  <Nav className="me-auto">
-                    <ul className="navbar-nav mr-auto">
-                      {currentUser ? (
-                        <div className="navbar-nav ml-auto d-flex ">
-                          {showBeneficiaireBoard && (
-                            <button
-                              className="button"
-                              style={{ minWidth: "10vw" }}
-                            >
-                              <Link
-                                to={`/${this.state.currentUser.prenom}/beneficiaire`}
-                                className="button"
-                              >
-                                Tableau de bord
-                              </Link>
-                            </button>
-                          )}
-
-                          {showAdminBoard && (
-                            <button
-                              className="button"
-                              style={{ minWidth: "10vw" }}
-                            >
-                              <Link to={"/admin"} className="button">
-                                Tableau de bord
-                              </Link>
-                            </button>
-                          )}
-                          <button className="button">
-                            <Link to={"/"}>Accueil</Link>
-                          </button>
-                          <button className="button">
+          <Navbar className="bleu d-flex justify-content-start " expand="lg" fixed="top">
+            <div className=" col-md-1 col-xl-1  d-none d-md-block ">
+              <img
+                fluid="true"
+                src={logo}
+                alt="logo missions locales"
+                style={{ width: "6vw", minWidth: "70px" }}
+                className=""
+              />
+            </div>
+            <div className="col-8 col-sm-8 col-md-9 col-lg-6 col-xl-7 d-flex justify-content-center justify-content-xs-center">
+              <h2>Plateforme garantie jeune</h2>
+            </div>
+            <div className="col-1 col-md-1 col-lg-6 col-xl-4 justify-content-start">
+              <Navbar.Toggle aria-controls="basic-navbar-nav" className="" />
+              <Navbar.Collapse id="basic-navbar-nav" className="justify-content-start">
+                <Nav className="me-auto">
+                  <ul className="navbar-nav mr-auto">
+                    {currentUser ? (
+                      <div className="navbar-nav ml-auto d-flex ">
+                        {showBeneficiaireBoard && (
+                          <button
+                            className="button"
+                            style={{ minWidth: "10vw" }}
+                          >
                             <Link
-                              to={`/${this.state.currentUser.prenom}/profile`}
+                              to={`/${this.state.currentUser.prenom}/beneficiaire`}
+                              className="button"
                             >
-                              Profil
+                              Tableau de bord
                             </Link>
                           </button>
-                          <button className="button">
-                            <a href="/login" onClick={this.logOut}>
-                              Deconnexion
-                            </a>
-                          </button>
-                        </div>
-                      ) : (
-                        <div className="navbar-nav ml-auto">
-                          <button className="button">
-                            <Link to={"/login"} className="button">
-                              Connexion
-                            </Link>
-                          </button>
+                        )}
 
-                          <button className="button">
-                            <Link to={"/register"} className="button">
-                              Inscription
+                        {showAdminBoard && (
+                          <button
+                            className="button"
+                            style={{ minWidth: "10vw" }}
+                          >
+                            <Link to={"/admin"} className="button">
+                              Tableau de bord
                             </Link>
                           </button>
-                        </div>
-                      )}
-                    </ul>
-                  </Nav>
-                </Navbar.Collapse>
-              </div>
-            </Navbar>
-          </Container>
+                        )}
+                        <button className="button">
+                          <Link to={"/"}>Accueil</Link>
+                        </button>
+                        <button className="button">
+                          <Link
+                            to={`/${this.state.currentUser.prenom}/profile`}
+                          >
+                            Profil
+                          </Link>
+                        </button>
+                        <button className="button">
+                          <a href="/login" onClick={this.logOut}>
+                            Deconnexion
+                          </a>
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="navbar-nav ml-auto">
+                        <button className="button">
+                          <Link to={"/login"} className="button">
+                            Connexion
+                          </Link>
+                        </button>
+
+                        <button className="button">
+                          <Link to={"/register"} className="button">
+                            Inscription
+                          </Link>
+                        </button>
+                      </div>
+                    )}
+                  </ul>
+                </Nav>
+              </Navbar.Collapse>
+            </div>
+          </Navbar>
         )}
 
         <div className="">

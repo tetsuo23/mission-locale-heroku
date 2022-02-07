@@ -44,7 +44,13 @@
       },
       Sante_5_3: {
         type: Sequelize.STRING,
-      }
+      },
+      Sante_6: {
+         type: Sequelize.INTEGER,
+       },
+       Sante_7: {
+          type: Sequelize.INTEGER,
+        }
    });
 
    return PostSante;

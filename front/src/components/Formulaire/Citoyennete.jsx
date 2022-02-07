@@ -51,7 +51,7 @@ export default class Citoyennete2 extends Component {
     this.state = {
       id: null,
       mois: "",
-      categorie: "Citoyenneté",     
+      categorie: "Citoyenneté",
       valData: [],
       moisUser: "",
       valeur: 0,
@@ -523,11 +523,11 @@ export default class Citoyennete2 extends Component {
           </div>
         </div>
         <div className="row" style={{ marginBottom: "2%" }}>
-          <div className="col-6">
+          <div className="col-12 col-lg-6">
             <div className="section-checkbox" style={{ marginTop: "5%" }}>
               <p>
                 <strong>
-                  18. Mes expériences citoyennes et associatives :
+                  20. Mes expériences citoyennes et associatives :
                 </strong>
               </p>
               <p
@@ -594,7 +594,7 @@ export default class Citoyennete2 extends Component {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-12 col-sm-1">
+                  {/* <div className="col-12 col-sm-1">
                     <Form.Check
                       checked={!this.state.Q_1_5}
                       onClick={this.onClickQ1_5}
@@ -615,25 +615,25 @@ export default class Citoyennete2 extends Component {
                         borderBottom: "1px solid black",
                       }}
                     ></textarea>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="orange" style={{ padding: "2%" }}>
-                <strong>Les dernières entrées sont : </strong>
-                <p>{dataVal1_1}</p>
-                <p>{dataVal1_2}</p>
-                <p>{dataVal1_3}</p>
-                <p>{dataVal1_4}</p>
-                <p>{dataVal1_5}</p>
-</div>
+                  <strong>Les dernières entrées sont : </strong>
+                  <p>{dataVal1_1}</p>
+                  <p>{dataVal1_2}</p>
+                  <p>{dataVal1_3}</p>
+                  <p>{dataVal1_4}</p>
+                  <p>{dataVal1_5}</p>
+                </div>
               </div>
             </div>
 
             {/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */}
           </div>
-          <div className="col-6">
+          <div className="col-12 col-lg-6">
             <div className="section-checkbox" style={{ marginTop: "5%" }}>
               <p>
-                <strong>19. L'administration française</strong>
+                <strong>21. L'administration française</strong>
               </p>
               <p
                 style={{
@@ -723,7 +723,7 @@ export default class Citoyennete2 extends Component {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-12 col-sm-1">
+                  {/* <div className="col-12 col-sm-1">
                     <Form.Check
                       checked={!this.state.Q_2_7}
                       onClick={this.onClickQ2_7}
@@ -744,7 +744,7 @@ export default class Citoyennete2 extends Component {
                         borderBottom: "1px solid black",
                       }}
                     ></textarea>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className="orange" style={{ padding: "2%" }}>
@@ -755,225 +755,195 @@ export default class Citoyennete2 extends Component {
                 <p>{dataVal2_4}</p>
                 <p>{dataVal2_5}</p>
                 <p>{dataVal2_6}</p>
-                <p>{dataVal2_7}</p>              </div>
+                <p>{dataVal2_7}</p>{" "}
+              </div>
             </div>
           </div>
-          <div className="section-checkbox col-12" style={{ marginTop: "5%" }}>
-            <div
-              className="col-12"
-              style={{
-                borderBottom: "2px solid black",
-                marginTop: "1%",
-                display: "flex",
-                justifyContent: "space-between",
-              }}
-            >
-              <h2>Loisirs</h2>
+
+          <div
+            className=" col-12"
+            style={{
+              borderBottom: "2px solid black",
+              marginTop: "1%",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <h2>Loisirs</h2>
+          </div>
+          <div className="col-12 col-lg-6">
+            <div className="section-checkbox" style={{ marginTop: "5%" }}>
+              <div
+                style={{
+                  borderBottom: "2px solid black",
+                  padding: "1% 0 1% 0",
+                }}
+              >
+                <strong>
+                  22. Je pratique une activité culturelle et/ou artistique
+                  (chant, dessin, sculpture...)
+                </strong>
+
+                <div className="input-group mb-3">
+                  <select
+                    name="valeur"
+                    className="form-control"
+                    id="valeur"
+                    value={this.state.Q_3}
+                    onChange={this.onChangeQ_3}
+                  >
+                    {" "}
+                    <option>Choisissez une réponse :</option>
+                    <option value="1">Jamais</option>
+                    <option value="2">Parfois</option>
+                    <option value="3">Régulièrement</option>
+                  </select>
+                </div>
+              </div>
+
+              <div
+                style={{
+                  borderBottom: "2px solid black",
+                  padding: "1% 0 1% 0",
+                }}
+              >
+                <strong>
+                  23.Je regarde des séries sur des plateformes (Netflix, OCS,
+                  Disney, Amazon prime ...)
+                </strong>
+
+                <div className="input-group mb-3">
+                  <select
+                    name="valeur"
+                    className="form-control"
+                    id="valeur"
+                    value={this.state.Q_4}
+                    onChange={this.onChangeQ_4}
+                  >
+                    {" "}
+                    <option>Choisissez une réponse :</option>
+                    <option value="1">Jamais</option>
+                    <option value="2">Parfois</option>
+                    <option value="3">Régulièrement</option>
+                  </select>
+                </div>
+              </div>
+              <div
+            
+            style={{
+              borderBottom: "2px solid black",
+              padding: "1% 0 1% 0",
+            }}
+          >
+            <div className="col-sm-12">
+              <strong>27.Je joue en ligne et/ou à des jeux sur console</strong>
             </div>
 
-            <div className="row">
-              <div
-                className="checkboxBloc d-none d-sm-block col-6"
-                style={{ padding: "0 0 0 5%" }}
+            <div className="input-group mb-3">
+              <select
+                name="valeur"
+                className="form-control"
+                id="valeur"
+                value={this.state.Q_8}
+                onChange={this.onChangeQ_8}
               >
-                <div
-                  className="row d-flex align-items-center"
-                  style={{
-                    borderBottom: "2px solid black",
-                    padding: "1% 0 1% 0",
-                  }}
-                >
-                  <div className="col-sm-12">
-                    <strong>
-                      Je pratique une activité culturelle et/ou artistique
-                      (chant, dessin, sculpture...)
-                    </strong>
-                  </div>
+                {" "}
+                <option>Choisissez une réponse :</option>
+                <option value="1">Jamais</option>
+                <option value="2">Parfois</option>
+                <option value="3">Régulièrement</option>
+              </select>
+            </div>
+          </div>
+            </div>
+          </div>
 
-                  <div className="input-group mb-3">
-                    <select
-                      name="valeur"
-                      className="form-control"
-                      id="valeur"
-                      value={this.state.Q_3}
-                      onChange={this.onChangeQ_3}
-                    >
-                      {" "}
-                      <option>Choisissez une réponse :</option>
-                      <option value="1">Jamais</option>
-                      <option value="2">Parfois</option>
-                      <option value="3">Régulièrement</option>
-                    </select>
-                  </div>
+          <div className="col-12 col-lg-6">
+            <div className="section-checkbox" style={{ marginTop: "5%" }}>
+              <div
+                style={{
+                  borderBottom: "2px solid black",
+                  padding: "1% 0 1% 0",
+                }}
+              >
+                <div className="col-sm-12">
+                  <strong>24.Je vais en bibliothèque / médiathèque</strong>
+                </div>
+
+                <div className="input-group mb-3">
+                  <select
+                    name="valeur"
+                    className="form-control"
+                    id="valeur"
+                    value={this.state.Q_5}
+                    onChange={this.onChangeQ_5}
+                  >
+                    {" "}
+                    <option>Choisissez une réponse :</option>
+                    <option value="1">Jamais</option>
+                    <option value="2">Parfois</option>
+                    <option value="3">Régulièrement</option>
+                  </select>
                 </div>
               </div>
-              <div
-                className="checkboxBloc d-none d-sm-block col-6"
-                style={{ padding: "0 0 0 5%" }}
-              >
-                <div
-                  className="row d-flex align-items-center"
-                  style={{
-                    borderBottom: "2px solid black",
-                    padding: "1% 0 1% 0",
-                  }}
-                >
-                  <div className="col-sm-12">
-                    <strong>
-                      Je regarde des séries sur des plateformes (Netflix, OCS,
-                      Disney, Amazon prime ...)
-                    </strong>
-                  </div>
 
-                  <div className="input-group mb-3">
-                    <select
-                      name="valeur"
-                      className="form-control"
-                      id="valeur"
-                      value={this.state.Q_4}
-                      onChange={this.onChangeQ_4}
-                    >
-                      {" "}
-                      <option>Choisissez une réponse :</option>
-                      <option value="1">Jamais</option>
-                      <option value="2">Parfois</option>
-                      <option value="3">Régulièrement</option>
-                    </select>
-                  </div>
+              <div
+                style={{
+                  borderBottom: "2px solid black",
+                  padding: "1% 0 1% 0",
+                }}
+              >
+                <div className="col-sm-12">
+                  <strong>25.Je vais à des concerts</strong>
+                </div>
+
+                <div className="input-group mb-3">
+                  <select
+                    name="valeur"
+                    className="form-control"
+                    id="valeur"
+                    value={this.state.Q_6}
+                    onChange={this.onChangeQ_6}
+                  >
+                    {" "}
+                    <option>Choisissez une réponse :</option>
+                    <option value="1">Jamais</option>
+                    <option value="2">Parfois</option>
+                    <option value="3">Régulièrement</option>
+                  </select>
                 </div>
               </div>
-              <div
-                className="checkboxBloc d-none d-sm-block col-4"
-                style={{ padding: "0 0 0 5%" }}
-              >
-                <div
-                  className="row d-flex align-items-center"
-                  style={{
-                    borderBottom: "2px solid black",
-                    padding: "1% 0 1% 0",
-                  }}
-                >
-                  <div className="col-sm-12">
-                    <strong>Je vais en bibliothèque / médiathèque</strong>
-                  </div>
 
-                  <div className="input-group mb-3">
-                    <select
-                      name="valeur"
-                      className="form-control"
-                      id="valeur"
-                      value={this.state.Q_5}
-                      onChange={this.onChangeQ_5}
-                    >
-                      {" "}
-                      <option>Choisissez une réponse :</option>
-                      <option value="1">Jamais</option>
-                      <option value="2">Parfois</option>
-                      <option value="3">Régulièrement</option>
-                    </select>
-                  </div>
+              <div
+                style={{
+                  borderBottom: "2px solid black",
+                  padding: "1% 0 1% 0",
+                }}
+              >
+                <div className="col-sm-12">
+                  <strong>26.Je vais au cinéma</strong>
                 </div>
-              </div>
-              <div
-                className="checkboxBloc d-none d-sm-block col-4"
-                style={{ padding: "0 0 0 5%" }}
-              >
-                <div
-                  className="row d-flex align-items-center"
-                  style={{
-                    borderBottom: "2px solid black",
-                    padding: "1% 0 1% 0",
-                  }}
-                >
-                  <div className="col-sm-12">
-                    <strong>Je vais à des concerts</strong>
-                  </div>
 
-                  <div className="input-group mb-3">
-                    <select
-                      name="valeur"
-                      className="form-control"
-                      id="valeur"
-                      value={this.state.Q_6}
-                      onChange={this.onChangeQ_6}
-                    >
-                      {" "}
-                      <option>Choisissez une réponse :</option>
-                      <option value="1">Jamais</option>
-                      <option value="2">Parfois</option>
-                      <option value="3">Régulièrement</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div
-                className="checkboxBloc d-none d-sm-block col-4"
-                style={{ padding: "0 0 0 5%" }}
-              >
-                <div
-                  className="row d-flex align-items-center"
-                  style={{
-                    borderBottom: "2px solid black",
-                    padding: "1% 0 1% 0",
-                  }}
-                >
-                  <div className="col-sm-12">
-                    <strong>Je vais au cinéma</strong>
-                  </div>
-
-                  <div className="input-group mb-3">
-                    <select
-                      name="valeur"
-                      className="form-control"
-                      id="valeur"
-                      value={this.state.Q_7}
-                      onChange={this.onChangeQ_7}
-                    >
-                      {" "}
-                      <option>Choisissez une réponse :</option>
-                      <option value="1">Jamais</option>
-                      <option value="2">Parfois</option>
-                      <option value="3">Régulièrement</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div
-                className="checkboxBloc d-none d-sm-block col-6"
-                style={{ padding: "0 0 0 5%" }}
-              >
-                <div
-                  className="row d-flex align-items-center"
-                  style={{
-                    borderBottom: "2px solid black",
-                    padding: "1% 0 1% 0",
-                  }}
-                >
-                  <div className="col-sm-12">
-                    <strong>
-                      Je joue en ligne et/ou à des jeux sur console
-                    </strong>
-                  </div>
-
-                  <div className="input-group mb-3">
-                    <select
-                      name="valeur"
-                      className="form-control"
-                      id="valeur"
-                      value={this.state.Q_8}
-                      onChange={this.onChangeQ_8}
-                    >
-                      {" "}
-                      <option>Choisissez une réponse :</option>
-                      <option value="1">Jamais</option>
-                      <option value="2">Parfois</option>
-                      <option value="3">Régulièrement</option>
-                    </select>
-                  </div>
+                <div className="input-group mb-3">
+                  <select
+                    name="valeur"
+                    className="form-control"
+                    id="valeur"
+                    value={this.state.Q_7}
+                    onChange={this.onChangeQ_7}
+                  >
+                    {" "}
+                    <option>Choisissez une réponse :</option>
+                    <option value="1">Jamais</option>
+                    <option value="2">Parfois</option>
+                    <option value="3">Régulièrement</option>
+                  </select>
                 </div>
               </div>
             </div>
           </div>
+
+          
         </div>
         <button
           onClick={this.saveDonnee}

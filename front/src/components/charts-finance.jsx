@@ -25,7 +25,7 @@ class ChartsFinance extends Component {
 
     axios
       .get(
-        `http://localhost:8080/api/posts/finance/${currentUser.prenom}/finance`,
+        `http://localhost:8080/api/posts/finance/${currentUser.nom}/finance`,
         { headers: authHeader() }
       )
 
@@ -52,13 +52,13 @@ class ChartsFinance extends Component {
 
       datasets: [
         {
-          label: "Question n°1",
+          label: "Question n°9",
           data: dataVal,
           backgroundColor: "rgb(30,55,  250)",
           borderColor: "rgba(30,55,  250, 0.4)",
         },
         {
-          label: "Question n°2",
+          label: "Question n°10",
           data: dataVal2,
           backgroundColor: "rgb(55, 30, 50)",
           borderColor: "rgba(55, 30, 50, 0.4)",

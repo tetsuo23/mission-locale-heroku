@@ -133,7 +133,7 @@ class Emploi extends Component {
             style={{ padding: "0 2% 0 2%" }}
           >
             <div
-              className="col-6"
+              className="col-12"
               style={{
                 borderBottom: "2px solid black",
                 marginTop: "2%",
@@ -150,7 +150,7 @@ class Emploi extends Component {
               </div>
             </div>
             <div className="row d-flex justify-content-between">
-              <div className="col-12 col-sm-6 col-lg-8 ">
+              <div className="col-12 col-sm-12 col-lg-8 ">
                 <div
                   style={{
                     border: "1px solid black",
@@ -163,7 +163,7 @@ class Emploi extends Component {
               </div>
               <div className="col-12 col-lg-4">
                 {" "}
-                <Messagerie />
+                {/* <Messagerie /> */}
               </div>
             </div>
             <Emploi2 />

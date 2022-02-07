@@ -101,7 +101,7 @@ export default class Finance2 extends Component {
 
     axios
       .get(
-        `http://localhost:8080/api/posts/finance/${currentUser.prenom}/finance`,
+        `http://localhost:8080/api/posts/finance/${currentUser.nom}/finance`,
         { headers: authHeader() }
       )
 
@@ -246,7 +246,7 @@ export default class Finance2 extends Component {
       Finance_question_4_3: this.state.Finance_question_4_3,
       Finance_question_4_4: this.state.Finance_question_4_4,
       total: add,
-      userId: user.prenom,
+      userId: user.nom,
       categorie: this.state.categorie,
       published: this.state.published,
     };
@@ -360,10 +360,10 @@ export default class Finance2 extends Component {
           </div>
         </div>
         <div className="row">
-          <div className="col-4">
+          <div className="col-12 col-lg-4">
             <div className="section-checkbox" style={{ marginTop: "5%" }}>
               <p>
-                <strong>14. J'ai des difficultés financières</strong>
+                <strong>9. J'ai des difficultés financières</strong>
               </p>
               <p
                 style={{
@@ -392,10 +392,10 @@ export default class Finance2 extends Component {
               </div>
             </div>
           </div>
-          <div className="col-4">
+          <div className="col-12 col-lg-4">
             <div className="section-checkbox" style={{ marginTop: "5%" }}>
               <p>
-                <strong>15. J'ai déjà été à découvert</strong>
+                <strong>10. J'ai déjà été à découvert</strong>
               </p>
               <p
                 style={{
@@ -430,10 +430,10 @@ export default class Finance2 extends Component {
         {/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
 
         <div className="row" style={{ marginBottom: "2%" }}>
-          <div className="col-6">
+          <div className="col-12 col-lg-6">
             <div className="section-checkbox" style={{ marginTop: "5%" }}>
               <p>
-                <strong>16. Je possède :</strong>
+                <strong>11. Je possède :</strong>
               </p>
               <p
                 style={{
@@ -508,7 +508,7 @@ export default class Finance2 extends Component {
               </div>
             </div>
           </div>
-          <div className="orange" style={{ padding: "2%" }}>
+          <div className="orange" style={{ padding: "2%", margin:'2% 0 2% 0'  }}>
             <strong>Les dernières entrées sont : </strong>
             <p>{dataVal}</p>
             <p>{dataVal2}</p>
@@ -519,11 +519,11 @@ export default class Finance2 extends Component {
 
           {/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
 
-          <div className="col-6">
+          <div className="col-12 col-lg-6">
             <div className="section-checkbox" style={{ marginTop: "5%" }}>
               <p>
                 <strong>
-                  17. Je perçois les ressources financières suivantes :
+                  12. Je perçois les ressources financières suivantes :
                 </strong>
               </p>
               <p
@@ -588,7 +588,7 @@ export default class Finance2 extends Component {
               </div>
             </div>
           </div>
-          <div className="orange" style={{ padding: "2%" }}>
+          <div className="orange" style={{ padding: "2%", margin:'2% 0 2% 0' }}>
             <strong>Les dernières entrées sont : </strong>
             <p>{dataVal6}</p>
             <p>{dataVal7}</p>

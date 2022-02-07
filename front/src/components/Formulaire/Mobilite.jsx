@@ -145,7 +145,7 @@ export default class Mobilite2 extends Component {
       Mobilite_question_5: this.state.Q5,
       Mobilite_question_6: this.state.Q6,
       total: add,
-      userId: user.prenom,
+      userId: user.nom,
       categorie: this.state.categorie,
       published: this.state.published,
     };
@@ -230,9 +230,6 @@ export default class Mobilite2 extends Component {
                   <option value="1">Je n'ai aucun permis</option>
                   <option value="2">J'ai le permis AM</option>
                   <option value="3">J'ai le permis B</option>
-                  <option value="4">J'ai le permis 4</option>
-                  <option value="5">J'ai le permis 5</option>
-                  <option value="6">J'ai le permis 6</option>
                 </select>
               </div>
             </div>

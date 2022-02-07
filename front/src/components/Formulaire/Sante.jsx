@@ -23,6 +23,8 @@ export default class Sante2 extends Component {
     this.onChangeQ_4_4 = this.onChangeQ_4_4.bind(this);
     this.onChangeQ_5_1 = this.onChangeQ_5_1.bind(this);
     this.onChangeQ_5_2 = this.onChangeQ_5_2.bind(this);
+    this.onChangeQ_6 = this.onChangeQ_6.bind(this);
+    this.onChangeQ_7 = this.onChangeQ_7.bind(this);
     this.onChangeQ_5_3 = this.onChangeQ_5_3.bind(this);
 
     this.saveDonnee = this.saveDonnee.bind(this);
@@ -56,6 +58,8 @@ export default class Sante2 extends Component {
       Sante_5_1: "",
       Sante_5_2: "",
       Sante_5_3: "",
+      Sante_6: null,
+      Sante_7: null,
 
       Q_1: null,
       Q_2: null,
@@ -69,6 +73,8 @@ export default class Sante2 extends Component {
       Q_5_1: true,
       Q_5_2: true,
       Q_5_3: true,
+      Q_6: null,
+      Q_7: null,
 
       currentUser: { prenom: "", nom: "" },
       submitted: false,
@@ -138,7 +144,7 @@ export default class Sante2 extends Component {
   onChangeQ_3(e) {
     this.setState({ Q_3: Number(e.target.value) });
   }
-  
+
   onChangeQ_4_1(e) {
     this.setState({ Q_4_1: !e.target.checked });
   }
@@ -151,7 +157,7 @@ export default class Sante2 extends Component {
   onChangeQ_4_4(e) {
     this.setState({ Q_4_4: !e.target.checked });
   }
-  
+
   onChangeQ_5_1(e) {
     this.setState({ Q_5_1: !e.target.checked });
   }
@@ -160,6 +166,12 @@ export default class Sante2 extends Component {
   }
   onChangeQ_5_3(e) {
     this.setState({ Q_5_3: !e.target.checked });
+  }
+  onChangeQ_6(e) {
+    this.setState({ Q_6: Number(e.target.value) });
+  }
+  onChangeQ_7(e) {
+    this.setState({ Q_7: Number(e.target.value) });
   }
 
   onClickQ_4_1(e) {
@@ -226,8 +238,8 @@ export default class Sante2 extends Component {
       Number(this.state.Q1) +
       Number(this.state.Q2) +
       Number(this.state.Q3) +
-      Number(this.state.Q4) +
-      Number(this.state.Q5);
+      Number(this.state.Q6) +
+      Number(this.state.Q7);
     var data = {
       mois: this.state.mois,
       Sante_1: this.state.Q_1,
@@ -242,7 +254,9 @@ export default class Sante2 extends Component {
       Sante_5_1: this.state.Sante_5_1,
       Sante_5_2: this.state.Sante_5_2,
       Sante_5_3: this.state.Sante_5_3,
-      userId: user.prenom,
+      Sante_6: this.state.Q_6,
+      Sante_7: this.state.Q_7,
+      userId: user.nom,
       categorie: this.state.categorie,
     };
 
@@ -263,6 +277,8 @@ export default class Sante2 extends Component {
           Sante_5_1: response.data.Sante_5_1,
           Sante_5_2: response.data.Sante_5_2,
           Sante_5_3: response.data.Sante_5_3,
+          Sante_6: response.data.Sante_6,
+          Sante_7: response.data.Sante_7,
           published: response.data.published,
           categorie: response.data.categorieId,
           submitted: true,
@@ -347,10 +363,10 @@ export default class Sante2 extends Component {
         </div>
 
         <div className="row" style={{ padding: "0 0 2% 0" }}>
-          <div className="col-4">
+          <div className="col-12 col-lg-4">
             <div className="section-checkbox" style={{ marginTop: "5%" }}>
               <p>
-                <strong>7. Sur le plan administratif.</strong>
+                <strong>28. Sur le plan administratif.</strong>
               </p>
               <p
                 style={{
@@ -384,7 +400,7 @@ export default class Sante2 extends Component {
             <div className="section-checkbox" style={{ marginTop: "5%" }}>
               <p>
                 <strong>
-                  8. La dernière fois que je suis allé chez le medecin c'était :
+                  29. La dernière fois que je suis allé chez le medecin c'était :
                 </strong>
               </p>
               <p
@@ -416,11 +432,11 @@ export default class Sante2 extends Component {
 
           {/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
 
-          <div className="col-4">
+          <div className="col-12 col-lg-4">
             <div className="section-checkbox" style={{ marginTop: "5%" }}>
               <p>
                 <strong>
-                  9. Parmi les affirmations ci-dessous, laquelle correspond le
+                  30. Parmi les affirmations ci-dessous, laquelle correspond le
                   mieux à ma situation actuelle ?
                 </strong>
               </p>
@@ -461,10 +477,10 @@ export default class Sante2 extends Component {
                 </select>
               </div>
             </div>
-            <div className="section-checkbox" style={{ marginTop: "5%" }}>
+            <div className="section-checkbox" style={{ marginTop: "5%", marginBottom: "2%" }}>
               <p>
                 <strong>
-                  10. Parmi la liste qui suit, quels sont les professionnels que
+                  31. Parmi la liste qui suit, quels sont les professionnels que
                   j'ai déjà rencontrés?
                 </strong>
               </p>
@@ -531,23 +547,24 @@ export default class Sante2 extends Component {
                   </div>
                 </div>
               </div>
-              <div className="orange" style={{ padding: "2%" }}>
+              
+            </div>
+            <div className="orange" style={{ padding: "2%" }}>
                 <strong>Les dernières entrées sont : </strong>
                 <p>{dataVal4_1}</p>
                 <p>{dataVal4_2}</p>
                 <p>{dataVal4_3}</p>
                 <p>{dataVal4_4}</p>
               </div>
-            </div>
           </div>
 
           {/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
 
-          <div className="col-4">
-            <div className="section-checkbox" style={{ marginTop: "5%" }}>
+          <div className="col-12 col-lg-4">
+            <div className="section-checkbox" style={{ marginTop: "5%", marginBottom: "2%" }}>
               <p>
                 <strong>
-                  11. J'ai obtenu une reconnaissance de travailleur handicapé
+                  32. J'ai obtenu une reconnaissance de travailleur handicapé
                 </strong>
               </p>
               <p
@@ -631,7 +648,7 @@ export default class Sante2 extends Component {
           style={{ marginTop: "5%", marginBottom: "2%" }}
         >
           <p>
-            <strong>20. Quelles sont mes pratiques en matière de sport</strong>
+            <strong>33. Quelles sont mes pratiques en matière de sport</strong>
           </p>
           <p
             style={{
@@ -650,37 +667,22 @@ export default class Sante2 extends Component {
               <div className="row">
                 <div className="col-12">
                   <p>
-                    <strong>Je suis licencié dans un club de sport</strong>
+                    <strong>34. Je suis licencié dans un club de sport</strong>
                   </p>
                 </div>
                 <div className="input-group mb-3">
-                  <label htmlFor="mois">&nbsp;selectionnez&nbsp;:&nbsp;</label>
                   <select
                     name="valeur"
                     className="form-control"
                     id="valeur"
-                    value={this.state.Q4}
-                    onChange={this.onChangeQ4}
+                    value={this.state.Q_6}
+                    onChange={this.onChangeQ_6}
                   >
+                    <option>Choisissez une réponse :</option>
                     <option value="1">Jamais</option>
                     <option value="2">Parfois</option>
                     <option value="3">Régulièrement</option>
                   </select>
-                </div>
-                <div className="col-4">
-                  <Form.Check type="checkbox" label="Oui" />
-                </div>
-                <div className="col-4">
-                  <Form.Check type="checkbox" label="Non" />
-                </div>
-                <div className="col-4">
-                  <Form.Check type="checkbox" label="Parfois" />
-                </div>
-                <div className="col-4">
-                  <Form.Check type="checkbox" label="Régulièrement" />
-                </div>
-                <div className="col-4">
-                  <Form.Check type="checkbox" label="Jamais" />
                 </div>
               </div>
             </div>
@@ -699,20 +701,18 @@ export default class Sante2 extends Component {
                   }}
                 >
                   <div className="col-sm-12">
-                    <strong>Je suis licencié dans un club de sport</strong>
+                    <strong>34. Je suis licencié dans un club de sport</strong>
                   </div>
 
                   <div className="input-group mb-3">
-                    <label htmlFor="mois">
-                      &nbsp;selectionnez&nbsp;:&nbsp;
-                    </label>
                     <select
                       name="valeur"
                       className="form-control"
                       id="valeur"
-                      value={this.state.Q4}
-                      onChange={this.onChangeQ4}
+                      value={this.state.Q_6}
+                      onChange={this.onChangeQ_6}
                     >
+                      <option>Choisissez une réponse :</option>
                       <option value="1">Jamais</option>
                       <option value="2">Parfois</option>
                       <option value="3">Régulièrement</option>
@@ -729,23 +729,22 @@ export default class Sante2 extends Component {
               <div className="row">
                 <div className="col-12">
                   <p>
-                    <strong>Je pratique une activité physique seul</strong>
+                    <strong>35. Je pratique une activité physique seul</strong>
                   </p>
                 </div>
-                <div className="col-4">
-                  <Form.Check type="checkbox" label="Oui" />
-                </div>
-                <div className="col-4">
-                  <Form.Check type="checkbox" label="Non" />
-                </div>
-                <div className="col-4">
-                  <Form.Check type="checkbox" label="Parfois" />
-                </div>
-                <div className="col-4">
-                  <Form.Check type="checkbox" label="Régulièrement" />
-                </div>
-                <div className="col-4">
-                  <Form.Check type="checkbox" label="Jamais" />
+                <div className="input-group mb-3">
+                  <select
+                    name="valeur"
+                    className="form-control"
+                    id="valeur"
+                    value={this.state.Q_7}
+                    onChange={this.onChangeQ_7}
+                  >
+                    <option>Choisissez une réponse :</option>
+                    <option value="1">Jamais</option>
+                    <option value="2">Parfois</option>
+                    <option value="3">Régulièrement</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -763,20 +762,18 @@ export default class Sante2 extends Component {
                   }}
                 >
                   <div className="col-sm-12">
-                    <strong>Je pratique une activité physique seul</strong>
+                    <strong>35. Je pratique une activité physique seul</strong>
                   </div>
 
                   <div className="input-group mb-3">
-                    <label htmlFor="mois">
-                      &nbsp;selectionnez&nbsp;:&nbsp;
-                    </label>
                     <select
                       name="valeur"
                       className="form-control"
                       id="valeur"
-                      value={this.state.Q5}
-                      onChange={this.onChangeQ5}
+                      value={this.state.Q_7}
+                      onChange={this.onChangeQ_7}
                     >
+                      <option>Choisissez une réponse :</option>
                       <option value="1">Jamais</option>
                       <option value="2">Parfois</option>
                       <option value="3">Régulièrement</option>

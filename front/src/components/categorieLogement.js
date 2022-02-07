@@ -129,10 +129,10 @@ class Logement extends Component {
           </div>
           <div
             className="container-fluid col-11"
-            style={{ padding: "0 2% 0 2%" }}
+            style={{ padding: "5% 2% 0 2%" }}
           >
             <div
-              className="col-6"
+              className="col-12"
               style={{
                 borderBottom: "2px solid black",
                 marginTop: "2%",
@@ -149,7 +149,7 @@ class Logement extends Component {
               </div>
             </div>
             <div className="row d-flex justify-content-between">
-              <div className="col-12 col-sm-6 col-lg-8 ">
+              <div className="col-12 col-sm-12 col-lg-8 ">
                 <div
                   style={{
                     border: "1px solid black",
@@ -162,7 +162,7 @@ class Logement extends Component {
               </div>
               <div className="col-12 col-lg-4">
                 {" "}
-                <Messagerie />
+                {/* <Messagerie /> */}
               </div>
             </div>
             <Logement2 />

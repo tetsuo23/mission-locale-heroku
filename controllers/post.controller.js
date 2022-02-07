@@ -286,6 +286,7 @@ exports.createPostSante = (req, res) => {
 
 exports.findAllUserIdAndCat = (req, res) => {
   const userId = req.params.userId;
+  
   const cat = req.params.categorie;
   PostMobilite.findAll({ where: { userId: userId, categorie: cat } })
     .then((data) => {
@@ -300,8 +301,9 @@ exports.findAllUserIdAndCat = (req, res) => {
 };
 exports.findAllUserIdAndCat2 = (req, res) => {
   const userId = req.params.userId;
+ 
   const cat = req.params.categorie;
-  PostLogement.findAll({ where: { userId: userId, categorie: cat } })
+  PostLogement.findAll({ where: {  userId: userId, categorie: cat } })
     .then((data) => {
       res.send(data);
     })

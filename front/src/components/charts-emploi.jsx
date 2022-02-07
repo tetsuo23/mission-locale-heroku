@@ -25,7 +25,7 @@ class ChartsEmploi extends Component {
 
     axios
       .get(
-        `http://localhost:8080/api/posts/emploi/${currentUser.prenom}/emploi`,
+        `http://localhost:8080/api/posts/emploi/${currentUser.nom}/emploi`,
         { headers: authHeader() }
       )
 
@@ -51,13 +51,13 @@ class ChartsEmploi extends Component {
 
       datasets: [
         {
-          label: "Question n°5",
+          label: "Question n°17",
           data: dataVal5,
           backgroundColor: "rgb(30,55,  250)",
           borderColor: "rgba(30,55,  250, 0.4)",
         },
         {
-          label: "Question n°6",
+          label: "Question n°18",
           data: dataVal6,
           backgroundColor: "rgb(55, 30, 50)",
           borderColor: "rgba(55, 30, 50, 0.4)",
@@ -66,8 +66,7 @@ class ChartsEmploi extends Component {
     };
     console.log(chartData);
     return (
-      <div>
-        <h3>Bar Chart</h3>
+      
         <div>
           <Line
             className="canvasPerso"
@@ -83,7 +82,7 @@ class ChartsEmploi extends Component {
             }}
           />
         </div>
-      </div>
+      
     );
   }
 }

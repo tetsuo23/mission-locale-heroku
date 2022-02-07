@@ -25,7 +25,7 @@ class ChartsCitoyennete extends Component {
 
     axios
       .get(
-        `http://localhost:8080/api/posts/citoyennete/${currentUser.prenom}/citoyennete`,
+        `http://localhost:8080/api/posts/citoyennete/${currentUser.nom}/citoyennete`,
         { headers: authHeader() }
       )
 
@@ -53,38 +53,38 @@ console.log(dataVal3);
 
       datasets: [
         {
-          label: "Question n°3",
+          label: "Question n°22",
           data: dataVal3,
           backgroundColor: "rgb(30,55,  250)",
           borderColor: "rgba(30,55,  250, 0.4)",
         },
         {
-          label: "Question n°4",
+          label: "Question n°23",
           data: dataVal4,
           backgroundColor: "rgb(55, 30, 50)",
           borderColor: "rgba(55, 30, 50, 0.4)",
         },
 
         {
-          label: "Question n°5",
+          label: "Question n°24",
           data: dataVal5,
           backgroundColor: "rgb(50, 155, 30 )",
           borderColor: "rgba(50, 155, 30, 0.4)",
         },
         {
-          label: "Question n°6",
+          label: "Question n°25",
           data: dataVal6,
           backgroundColor: "rgb( 230,120, 0)",
           borderColor: "rgba( 230,120, 0, 0.4)",
         },
         {
-          label: "Question n°7",
+          label: "Question n°26",
           data: dataVal7,
           backgroundColor: "rgb(200, 130, 255)",
           borderColor: "rgba(200, 130, 255, 0.4)",
         },
         {
-          label: "Question n°8",
+          label: "Question n°27",
           data: dataVal8,
           fill: false,
           backgroundColor: "rgb(255, 30, 150)",

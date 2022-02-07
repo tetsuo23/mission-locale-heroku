@@ -97,7 +97,7 @@ class Mobilite extends Component {
               </div>
               <div className="col-12 col-lg-4">
                 {" "}
-                <Messagerie />{" "}
+                {/* <Messagerie />{" "} */}
               </div>
             </div>
             <Mobilite2 />

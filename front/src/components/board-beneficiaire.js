@@ -169,7 +169,7 @@ class BoardBeneficiaire extends Component {
                 >
                   <div className="col-12 d-flex justify-content-center">
                     <h3>
-                      Formation <br /> Emploi
+                      Emploi
                     </h3>
                   </div>
                 </Link>

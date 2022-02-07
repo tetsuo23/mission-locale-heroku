@@ -103,14 +103,14 @@ export default class Profile extends Component {
       <div className="conteneur" style={{ backgroundImage: `url(${jeune})`, backgroundSize: 'cover', height: '100vh', width:'100vw' }}>
         {(this.state.userReady) ?
           <div>
-            <header className=" d-flex justify-content-between" style={{ padding: '2% 5% 2% 5%', backgroundColor:'#dededeaa' }}>
-              <div className="row">
-              <h3 className="col-12 col-sm-6">
+            <header className="" style={{ padding: '2% 5% 2% 5%', backgroundColor:'#dededeaa' }}>
+              <div className="row d-flex justify-content-between">
+              <h3 className="col-12 col-sm-8">
                 Bienvenue <strong>{currentUser.prenom} {currentUser.nom} </strong>
               </h3>
-              <div className="col-12 col-sm-6">
-                <strong>Status:{currentUser.roles &&
-                    currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}</strong>
+              <div className="col-12 col-sm-4 d-flex justify-content-end">
+                {currentUser.roles &&
+                    currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
                 <ul>
                   
                 </ul>
@@ -216,10 +216,10 @@ export default class Profile extends Component {
                 validations={[]}
               />
             </div>
-            <div className="form-group">
+            {/* <div className="form-group">
               <button variant="primary" type="submit" className='button'
               >Mettre à jour</button>
-            </div>
+            </div> */}
           </div>
 
 
